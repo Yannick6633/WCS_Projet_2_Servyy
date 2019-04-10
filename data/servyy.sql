@@ -1,66 +1,772 @@
-﻿
-CREATE TABLE `user` (
-    `id` INT(11)  NOT NULL ,
-    `firstname` VARCHAR(55)  NOT NULL ,
-    `lastname` VARCHAR(55)  NOT NULL ,
-    `email` VARCHAR(55)  NOT NULL ,
-    `password` VARCHAR(55)  NOT NULL ,
-    `status` INT  NOT NULL ,
-    `description` TEXT  NOT NULL ,
-    `phone` VARCHAR(55)  NOT NULL ,
-    `visibility` INT  NOT NULL ,
-    `city_id` INT(11)  NOT NULL ,
-    `distance` INT  NOT NULL ,
-    PRIMARY KEY (
-        `id`
-    )
-);
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost
+-- Généré le :  mer. 10 avr. 2019 à 19:30
+-- Version du serveur :  8.0.15
+-- Version de PHP :  7.3.3
 
-CREATE TABLE `user_service` (
-    `user_id` INT(11)  NOT NULL ,
-    `service_id` INT(11)  NOT NULL 
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE `service` (
-    `id` INT(11)  NOT NULL ,
-    `label` VARCHAR(55)  NOT NULL ,
-    PRIMARY KEY (
-        `id`
-    )
-);
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `servyy`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `city`
+--
 
 CREATE TABLE `city` (
-    `id` INT  NOT NULL ,
-    `city` VARCHAR(55)  NOT NULL ,
-    `zip_code` INT(10)  NOT NULL ,
-    PRIMARY KEY (
-        `id`
-    )
-);
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `zip_code` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `city`
+--
+
+INSERT INTO `city` (`name`, `zip_code`) VALUES
+('SAINT-JEAN-D\'ILLAC', 33127),
+('GUITRES', 33230),
+('CANEJAN', 33610),
+('LE BOUSCAT', 33110),
+('CASSEUIL', 33190),
+('GENISSAC', 33420),
+('LIBOURNE', 33500),
+('LE BARP', 33114),
+('VIRSAC', 33240),
+('LAVAZAN', 33690),
+('FLAUJAGUES', 33350),
+('SALAUNES', 33160),
+('ORIGNE', 33113),
+('SAINT-CHRISTOPHE-DES-BARDES', 33330),
+('BONZAC', 33910),
+('PETIT-PALAIS-ET-CORNEMPS', 33570),
+('SOUSSAC', 33790),
+('CERONS', 33720),
+('BEAUTIRAN', 33640),
+('SALIGNAC', 33240),
+('PERISSAC', 33240),
+('MERIGNAS', 33350),
+('DAIGNAC', 33420),
+('SAINT-HILAIRE-DE-LA-NOAILLE', 33190),
+('FLOIRAC', 33270),
+('PRIGNAC-ET-MARCAMPS', 33710),
+('BARON', 33750),
+('MAZERES', 33210),
+('LANGON', 33210),
+('SAINT-SEURIN-DE-CURSAC', 33390),
+('SAINT-LAURENT-MEDOC', 33112),
+('AMBES', 33810),
+('LA SAUVE', 33670),
+('SAINT-HIPPOLYTE', 33330),
+('SAINT-MARTIN-DE-LERM', 33540),
+('PLASSAC', 33390),
+('VILLENAVE-DE-RIONS', 33550),
+('PUYNORMAND', 33660),
+('MONTUSSAN', 33450),
+('LES BILLAUX', 33500),
+('COUTURES', 33580),
+('SAINT-GERMAIN-DE-LA-RIVIERE', 33240),
+('SAINT-EMILION', 33330),
+('ESPIET', 33420),
+('BLASIMON', 33540),
+('EYRANS', 33390),
+('SAINT-GENES-DE-LOMBAUD', 33670),
+('FRONSAC', 33126),
+('MARTILLAC', 33650),
+('CAZATS', 33430),
+('ESCOUSSANS', 33760),
+('CAMPS-SUR-L\'ISLE', 33660),
+('MARANSIN', 33230),
+('MARCENAIS', 33620),
+('GRADIGNAN', 33170),
+('LUSSAC', 33570),
+('VERTHEUIL', 33180),
+('LABARDE', 33460),
+('TIZAC-DE-CURTON', 33420),
+('LAMOTHE-LANDERRON', 33190),
+('SAINT-PIERRE-DE-MONS', 33210),
+('POMPIGNAC', 33370),
+('FOURS', 33390),
+('SAINTE-COLOMBE', 33350),
+('SAUVETERRE-DE-GUYENNE', 33540),
+('SAINTE-FOY-LA-LONGUE', 33490),
+('BIEUJAC', 33210),
+('BAGAS', 33190),
+('BLAIGNAC', 33190),
+('SAINT-ANTOINE-DU-QUEYRET', 33790),
+('FARGUES', 33210),
+('LUGASSON', 33760),
+('BOMMES', 33210),
+('SAINT-PIERRE-DE-BAT', 33760),
+('SAINT-ESTEPHE', 33180),
+('LADAUX', 33760),
+('GRIGNOLS', 33690),
+('SAINT-VIVIEN-DE-BLAYE', 33920),
+('SAINT-SYMPHORIEN', 33113),
+('BOURDELLES', 33190),
+('LA REOLE', 33190),
+('CAUMONT', 33540),
+('MONGAUZY', 33190),
+('BRANNE', 33420),
+('SAINT-LEON', 33670),
+('PUYBARBAN', 33190),
+('SAINT-SEURIN-SUR-L\'ISLE', 33660),
+('COUTRAS', 33230),
+('LUGAIGNAC', 33420),
+('MONPRIMBLANC', 33410),
+('COIMERES', 33210),
+('FRANCS', 33570),
+('SAINT-GENES-DE-CASTILLON', 33350),
+('BELIN-BELIET', 33830),
+('PORCHERES', 33660),
+('SAINT-ETIENNE-DE-LISSE', 33330),
+('NEUFFONS', 33580),
+('LOUPIAC-DE-LA-REOLE', 33190),
+('SAINT-TROJAN', 33710),
+('COMPS', 33710),
+('CENAC', 33360),
+('LEOGEATS', 33210),
+('NOAILLAN', 33730),
+('SAINT-PEY-D\'ARMENS', 33330),
+('BIGANOS', 33380),
+('SAINT-MACAIRE', 33490),
+('CEZAC', 33620),
+('VIRELADE', 33720),
+('VAYRES', 33870),
+('BOULIAC', 33270),
+('VIGNONET', 33330),
+('VALEYRAC', 33340),
+('BORDEAUX', 33000),
+('BERTHEZ', 33124),
+('CUBZAC-LES-PONTS', 33240),
+('SAINT-COME', 33430),
+('VILLEGOUGE', 33141),
+('SAINT-ANDRE-ET-APPELLES', 33220),
+('CIVRAC-DE-BLAYE', 33920),
+('BAURECH', 33880),
+('SAINT-LAURENT-DU-BOIS', 33540),
+('LES ARTIGUES-DE-LUSSAC', 33570),
+('ARVEYRES', 33500),
+('QUEYRAC', 33340),
+('MOMBRIER', 33710),
+('ILLATS', 33720),
+('NEAC', 33500),
+('ESCAUDES', 33840),
+('LES SALLES-DE-CASTILLON', 33350),
+('SAINT-CHRISTOLY-MEDOC', 33340),
+('BONNETAN', 33370),
+('CAMPUGNAN', 33390),
+('JAU-DIGNAC-ET-LOIRAC', 33590),
+('PRIGNAC-EN-MEDOC', 33340),
+('ARSAC', 33460),
+('JUGAZAN', 33420),
+('MARGAUX', 33460),
+('POMPEJAC', 33730),
+('MARCHEPRIME', 33380),
+('AILLAS', 33124),
+('LOUPIAC', 33410),
+('BEGLES', 33130),
+('GAJAC', 33430),
+('NERIGEAN', 33750),
+('LANGOIRAN', 33550),
+('CUBNEZAIS', 33620),
+('CROIGNON', 33750),
+('LANSAC', 33710),
+('SAINT-PHILIPPE-DU-SEIGNAL', 33220),
+('PRECHAC', 33730),
+('VILLANDRAUT', 33730),
+('SAINT-MARTIN-DU-BOIS', 33910),
+('VERDELAIS', 33490),
+('MACAU', 33460),
+('PAREMPUYRE', 33290),
+('DAUBEZE', 33540),
+('BEGUEY', 33410),
+('CAUVIGNAC', 33690),
+('AUDENGE', 33980),
+('SIGALENS', 33690),
+('LANDERROUET-SUR-SEGUR', 33540),
+('MARIMBAULT', 33430),
+('CASTELNAU-DE-MEDOC', 33480),
+('SAINT-SELVE', 33650),
+('LA ROQUILLE', 33220),
+('SAINT-LEGER-DE-BALSON', 33113),
+('SAINT-SAUVEUR-DE-PUYNORMAND', 33660),
+('BAYON-SUR-GIRONDE', 33710),
+('BASSENS', 33530),
+('BUDOS', 33720),
+('PONDAURAT', 33190),
+('SAINT-GENES-DE-BLAYE', 33390),
+('GORNAC', 33540),
+('SAUVIAC', 33430),
+('MONTIGNAC', 33760),
+('CESSAC', 33760),
+('SAINT-MAGNE', 33125),
+('SAINT-AUBIN-DE-MEDOC', 33160),
+('CARCANS', 33121),
+('LE HAILLAN', 33185),
+('PINEUILH', 33220),
+('GOUALADE', 33840),
+('AUBIAC', 33430),
+('CANTOIS', 33760),
+('MASSEILLES', 33690),
+('LES LEVES-ET-THOUMEYRAGUES', 33220),
+('LESTIAC-SUR-GARONNE', 33550),
+('LESPARRE-MEDOC', 33340),
+('SAINT-LAURENT-DU-PLAN', 33190),
+('SAINT-CIERS-SUR-GIRONDE', 33820),
+('BELLEFOND', 33760),
+('QUINSAC', 33360),
+('AUBIE-ET-ESPESSAS', 33240),
+('BLAYE', 33390),
+('BEGADAN', 33340),
+('PELLEGRUE', 33790),
+('SAINT-MEDARD-D\'EYRANS', 33650),
+('GIRONDE-SUR-DROPT', 33190),
+('SAINT-GIRONS-D\'AIGUEVIVES', 33920),
+('TAURIAC', 33710),
+('LA TESTE-DE-BUCH', 33260),
+('CASTELVIEL', 33540),
+('MAURIAC', 33540),
+('CABANAC-ET-VILLAGRAINS', 33650),
+('YVRAC', 33370),
+('EYSINES', 33320),
+('SAINT-AVIT-SAINT-NAZAIRE', 33220),
+('BIRAC', 33430),
+('GANS', 33430),
+('LOUBENS', 33190),
+('SAINT-MORILLON', 33650),
+('GOURS', 33660),
+('SAINT-ANDRONY', 33390),
+('BRANNENS', 33124),
+('ANGLADE', 33390),
+('LAMARQUE', 33460),
+('PAUILLAC', 33250),
+('BAZAS', 33430),
+('DONNEZAC', 33860),
+('SAINT-CIERS-D\'ABZAC', 33910),
+('ARCACHON', 33120),
+('SAINT-CAPRAIS-DE-BLAYE', 33820),
+('POMEROL', 33500),
+('CAMIRAN', 33190),
+('MAZION', 33390),
+('SAINT-SAVIN', 33920),
+('BOURG', 33710),
+('LANDIRAS', 33720),
+('TALAIS', 33590),
+('SAUGON', 33920),
+('SAINT-MICHEL-DE-FRONSAC', 33126),
+('SAINT-MARTIAL', 33490),
+('FARGUES-SAINT-HILAIRE', 33370),
+('CADILLAC', 33410),
+('GUJAN-MESTRAS', 33470),
+('ABZAC', 33230),
+('CARDAN', 33410),
+('SAINT-ANTOINE-SUR-L\'ISLE', 33660),
+('SAINTE-GEMME', 33580),
+('SABLONS', 33910),
+('SAINT-LOUBES', 33450),
+('VENSAC', 33590),
+('SAINT-SULPICE-ET-CAMEYRAC', 33450),
+('ANDERNOS-LES-BAINS', 33510),
+('SAINT-MEDARD-EN-JALLES', 33160),
+('CAPTIEUX', 33840),
+('RIOCAUD', 33220),
+('SAINT-CHRISTOPHE-DE-DOUBLE', 33230),
+('SAINT-MICHEL-DE-LAPUJADE', 33190),
+('CARS', 33390),
+('SAUCATS', 33650),
+('TOULENNE', 33210),
+('LA LANDE-DE-FRONSAC', 33240),
+('SAINT-LAURENT-D\'ARCE', 33240),
+('SAINT-SEURIN-DE-CADOURNE', 33180),
+('MARTRES', 33760),
+('PLEINE-SELVE', 33820),
+('CHAMADELLE', 33230),
+('MARCILLAC', 33860),
+('CLEYRAC', 33540),
+('CARTELEGUE', 33390),
+('LE TEICH', 33470),
+('BLANQUEFORT', 33290),
+('SAINT-CAPRAIS-DE-BORDEAUX', 33880),
+('NAUJAC-SUR-MER', 33990),
+('SOULAC-SUR-MER', 33780),
+('CAMARSAC', 33750),
+('SAINT-GERMAIN-DU-PUCH', 33750),
+('ARTIGUES-PRES-BORDEAUX', 33370),
+('BELLEBAT', 33760),
+('SAINT-SAUVEUR', 33250),
+('ARES', 33740),
+('TRESSES', 33370),
+('ORDONNAC', 33340),
+('SAINT-PALAIS', 33820),
+('MARGUERON', 33220),
+('SAINT-YZAN-DE-SOUDIAC', 33920),
+('GREZILLAC', 33420),
+('LE VERDON-SUR-MER', 33123),
+('TABANAC', 33550),
+('SAINT-VINCENT-DE-PERTIGNAS', 33420),
+('LAGORCE', 33230),
+('SAINT-GERMAIN-D\'ESTEUIL', 33340),
+('SAINT-MICHEL-DE-CASTELNAU', 33840),
+('HAUX', 33550),
+('BAIGNEAUX', 33760),
+('BRUGES', 33520),
+('SAINT-QUENTIN-DE-CAPLONG', 33220),
+('GENERAC', 33920),
+('CIVRAC-EN-MEDOC', 33340),
+('CANTENAC', 33460),
+('FOSSES-ET-BALEYSSAC', 33190),
+('SAINT-MARIENS', 33620),
+('SALLEBOEUF', 33370),
+('SAINT-MARTIN-DE-LAYE', 33910),
+('ROMAGNE', 33760),
+('RIMONS', 33580),
+('DARDENAC', 33420),
+('DONZAC', 33410),
+('SAINT-QUENTIN-DE-BARON', 33750),
+('CAMIAC-ET-SAINT-DENIS', 33420),
+('LIGNAN-DE-BAZAS', 33430),
+('BARIE', 33190),
+('PUJOLS', 33350),
+('CASTILLON-DE-CASTETS', 33210),
+('COURS-DE-MONSEGUR', 33580),
+('SAINT-LOUIS-DE-MONTFERRAND', 33440),
+('MOULON', 33420),
+('LE PIAN-MEDOC', 33290),
+('VERAC', 33240),
+('PESSAC-SUR-DORDOGNE', 33890),
+('SAINT-GENES-DE-FRONSAC', 33240),
+('FRONTENAC', 33760),
+('FONTET', 33190),
+('SAINT-SULPICE-DE-POMMIERS', 33540),
+('HOSTENS', 33125),
+('COIRAC', 33540),
+('MESTERRIEUX', 33540),
+('TEUILLAC', 33710),
+('CAUDROT', 33490),
+('TAYAC', 33570),
+('MOUILLAC', 33240),
+('CARIGNAN-DE-BORDEAUX', 33360),
+('LE TUZAN', 33125),
+('MARTIGNAS-SUR-JALLE', 33127),
+('GRAYAN-ET-L\'HOPITAL', 33590),
+('FALEYRAS', 33760),
+('COURS-LES-BAINS', 33690),
+('GABARNAC', 33410),
+('CISSAC-MEDOC', 33250),
+('LARTIGUE', 33840),
+('VENDAYS-MONTALIVET', 33930),
+('SAINT-MICHEL-DE-RIEUFRET', 33720),
+('BLAIGNAN', 33340),
+('SAINT-LOUBERT', 33210),
+('LUGON-ET-L\'ILE-DU-CARNAY', 33240),
+('SAINT-ANDRE-DU-BOIS', 33490),
+('ISLE-SAINT-GEORGES', 33640),
+('PUGNAC', 33710),
+('SAINT-GERVAIS', 33240),
+('GAURIAGUET', 33240),
+('NOAILLAC', 33190),
+('SAINT-JEAN-DE-BLAIGNAC', 33420),
+('TAILLECAVAT', 33580),
+('OMET', 33410),
+('HOURTIN', 33990),
+('LE NIZAN', 33430),
+('SAINT-MEDARD-DE-GUIZIERES', 33230),
+('BRAUD-ET-SAINT-LOUIS', 33820),
+('AVENSAN', 33480),
+('TIZAC-DE-LAPOUYADE', 33620),
+('PEUJARD', 33240),
+('ARCINS', 33460),
+('EYNESSE', 33220),
+('LACANAU', 33680),
+('LORMONT', 33310),
+('SAVIGNAC-DE-L\'ISLE', 33910),
+('BAYAS', 33230),
+('JUILLAC', 33890),
+('CARBON-BLANC', 33560),
+('RAUZAN', 33420),
+('UZESTE', 33730),
+('VILLENAVE-D\'ORNON', 33140),
+('SAINT-LAURENT-DES-COMBES', 33330),
+('DIEULIVOL', 33580),
+('SAINT-PHILIPPE-D\'AIGUILLE', 33350),
+('ARBIS', 33760),
+('CAPIAN', 33550),
+('SAINT-MAIXANT', 33490),
+('ROQUEBRUNE', 33580),
+('PREIGNAC', 33210),
+('LES ESSEINTES', 33190),
+('LABESCAU', 33690),
+('LA BREDE', 33650),
+('CUDOS', 33430),
+('MIOS', 33380),
+('CESTAS', 33610),
+('SAMONAC', 33710),
+('BERNOS-BEAULAC', 33430),
+('HURE', 33190),
+('LES EGLISOTTES-ET-CHALAURES', 33230),
+('SAVIGNAC', 33124),
+('LISTRAC-MEDOC', 33480),
+('LE POUT', 33670),
+('SAINT-ROMAIN-LA-VIRVEE', 33240),
+('GENSAC', 33890),
+('AMBARES-ET-LAGRAVE', 33440),
+('DOULEZON', 33350),
+('LATRESNE', 33360),
+('CASTRES-GIRONDE', 33640),
+('SAINT-EXUPERY', 33190),
+('SAINT-CHRISTOLY-DE-BLAYE', 33920),
+('SAUTERNES', 33210),
+('SAINT-PARDON-DE-CONQUES', 33210),
+('GUILLOS', 33720),
+('LE FIEU', 33230),
+('MARSAS', 33620),
+('TARNES', 33240),
+('SAINTE-FOY-LA-GRANDE', 33220),
+('LOUPES', 33370),
+('RUCH', 33350),
+('LAROQUE', 33410),
+('COUBEYRAC', 33890),
+('MASSUGAS', 33790),
+('SAINT-HILAIRE-DU-BOIS', 33540),
+('SAINTE-EULALIE', 33560),
+('SAINT-FELIX-DE-FONCAUDE', 33540),
+('LISTRAC-DE-DUREZE', 33790),
+('MONTAGOUDIN', 33190),
+('LANDERROUAT', 33790),
+('TARGON', 33760),
+('LEOGNAN', 33850),
+('MADIRAC', 33670),
+('AYGUEMORTE-LES-GRAVES', 33640),
+('TALENCE', 33400),
+('LUCMAU', 33840),
+('SADIRAC', 33670),
+('PESSAC', 33600),
+('LALANDE-DE-POMEROL', 33500),
+('MARIONS', 33690),
+('REIGNAC', 33860),
+('CASTELMORON-D\'ALBRET', 33540),
+('SAINT-PAUL', 33390),
+('LANTON', 33138),
+('VILLENEUVE', 33710),
+('GISCOS', 33840),
+('SAINT-SEURIN-DE-BOURG', 33710),
+('LOUCHATS', 33125),
+('ASQUES', 33240),
+('IZON', 33450),
+('CASTILLON-LA-BATAILLE', 33350),
+('ROAILLAN', 33210),
+('SAINTE-TERRE', 33350),
+('SAINTE-CROIX-DU-MONT', 33410),
+('MERIGNAC', 33700),
+('PUJOLS-SUR-CIRON', 33210),
+('CAPLONG', 33220),
+('SAINT-VIVIEN-DE-MONSEGUR', 33580),
+('SAINT-PEY-DE-CASTETS', 33350),
+('SAINT-VIVIEN-DE-MEDOC', 33590),
+('NAUJAN-ET-POSTIAC', 33420),
+('LIGUEUX', 33220),
+('CAZAUGITAT', 33790),
+('CAZALIS', 33113),
+('SAINT-GERMAIN-DE-GRAVE', 33490),
+('CABARA', 33420),
+('BASSANNE', 33190),
+('CASTETS-EN-DORTHE', 33210),
+('SENDETS', 33690),
+('BOURIDEYS', 33113),
+('GAILLAN-EN-MEDOC', 33340),
+('SILLAS', 33690),
+('SOUSSANS', 33460),
+('SOULIGNAC', 33760),
+('SAINT-AIGNAN', 33126),
+('PUISSEGUIN', 33570),
+('CAMBLANES-ET-MEYNAC', 33360),
+('SAINT-YZANS-DE-MEDOC', 33340),
+('MOURENS', 33410),
+('LUGOS', 33830),
+('SAINT-GENIS-DU-BOIS', 33760),
+('LE TAILLAN-MEDOC', 33320),
+('SAINT-JULIEN-BEYCHEVELLE', 33250),
+('CURSAN', 33670),
+('CUSSAC-FORT-MEDOC', 33460),
+('SEMENS', 33490),
+('LAPOUYADE', 33620),
+('LIGNAN-DE-BORDEAUX', 33360),
+('GAURIAC', 33710),
+('MONSEGUR', 33580),
+('CAVIGNAC', 33620),
+('CADARSAC', 33750),
+('MOULIS-EN-MEDOC', 33480),
+('CAMBES', 33880),
+('BEYCHAC-ET-CAILLAU', 33750),
+('SAINT-AVIT-DE-SOULEGE', 33220),
+('CREON', 33670),
+('LERM-ET-MUSSET', 33840),
+('MORIZES', 33190),
+('PAILLET', 33550),
+('COUQUEQUES', 33340),
+('SAILLANS', 33141),
+('FLOUDES', 33190),
+('SAINTE-FLORENCE', 33350),
+('SAINT-MARTIN-LACAUSSADE', 33390),
+('BELVES-DE-CASTILLON', 33350),
+('BERSON', 33390),
+('CIVRAC-SUR-DORDOGNE', 33350),
+('GALGON', 33133),
+('LE TOURNE', 33550),
+('SAINTE-HELENE', 33480),
+('CENON', 33150),
+('LA RIVIERE', 33126),
+('MOULIETS-ET-VILLEMARTIN', 33350),
+('LE PORGE', 33680),
+('BLESIGNAC', 33670),
+('SAINT-MAGNE-DE-CASTILLON', 33350),
+('SAINT-CIBARD', 33570),
+('SAINT-AUBIN-DE-BRANNE', 33420),
+('COURPIAC', 33760),
+('LE PUY', 33580),
+('SAINT-MARTIN-DE-SESCAS', 33490),
+('SALLES', 33770),
+('LADOS', 33124),
+('AUROS', 33124),
+('AURIOLLES', 33790),
+('SAUMOS', 33680),
+('SAINT-FERME', 33580),
+('GARDEGAN-ET-TOURTIRAC', 33350),
+('SAINT-VINCENT-DE-PAUL', 33440),
+('RIONS', 33410),
+('ARBANATS', 33640),
+('SAINT-SULPICE-DE-FALEYRENS', 33330),
+('SAINT-BRICE', 33540),
+('CADILLAC-EN-FRONSADAIS', 33240),
+('BOSSUGAN', 33350),
+('SAINT-SULPICE-DE-GUILLERAGUES', 33580),
+('SAINT-SEVE', 33190),
+('LE PIAN-SUR-GARONNE', 33490),
+('LEGE-CAP-FERRET', 33950),
+('SAINT-CIERS-DE-CANESSE', 33710),
+('GUILLAC', 33420),
+('SAINT-AUBIN-DE-BLAYE', 33820),
+('SAINT-ANDRE-DE-CUBZAC', 33240),
+('SAINT-PIERRE-D\'AURILLAC', 33490),
+('SAINT-MARTIN-DU-PUY', 33540),
+('BALIZAC', 33730),
+('ETAULIERS', 33820),
+('PORTETS', 33640),
+('BARSAC', 33720),
+('LE TEMPLE', 33680),
+('PODENSAC', 33720),
+('LARUSCADE', 33620),
+('BRACH', 33480),
+('LUDON-MEDOC', 33290),
+('SAINT-DENIS-DE-PILE', 33910),
+('SAINTE-RADEGONDE', 33350),
+('MONTAGNE', 33570),
+('LES PEINTURES', 33230),
+('BROUQUEYRAN', 33124),
+('SAINT-ANTOINE', 33240),
+('CADAUJAC', 33140);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comment`
+--
 
 CREATE TABLE `comment` (
-    `id` INT  NOT NULL ,
-    `content` TEXT  NULL ,
-    `rate` INT  NOT NULL ,
-    `author_id` INT  NOT NULL ,
-    `provider_id` INT  NOT NULL ,
-    PRIMARY KEY (
-        `id`
-    )
-);
+  `id` int(11) NOT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `rate` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `provider_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE `user` ADD CONSTRAINT `fk_user_id` FOREIGN KEY(`id`)
-REFERENCES `user_service` (`user_id`);
+-- --------------------------------------------------------
 
-ALTER TABLE `user` ADD CONSTRAINT `fk_user_city_id` FOREIGN KEY(`city_id`)
-REFERENCES `city` (`id`);
+--
+-- Structure de la table `item`
+--
 
-ALTER TABLE `service` ADD CONSTRAINT `fk_service_id` FOREIGN KEY(`id`)
-REFERENCES `user_service` (`service_id`);
+CREATE TABLE `item` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `comment` ADD CONSTRAINT `fk_comment_author_id` FOREIGN KEY(`author_id`)
-REFERENCES `user` (`id`);
+-- --------------------------------------------------------
 
-ALTER TABLE `comment` ADD CONSTRAINT `fk_comment_provider_id` FOREIGN KEY(`provider_id`)
-REFERENCES `user` (`id`);
+--
+-- Structure de la table `service`
+--
 
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `label` varchar(55) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `service`
+--
+
+INSERT INTO `service` (`id`, `label`) VALUES
+(1, 'Bricolage'),
+(2, 'Jardinage'),
+(3, 'Déménagement'),
+(4, 'Entretient - Réparation'),
+(5, 'Cours'),
+(6, 'Garde d\'animaux'),
+(7, 'Garde d\'enfants'),
+(8, 'Services à la personne'),
+(9, 'Plomberie');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `phone` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `visibility` enum('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `city_id` int(11) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `description`, `phone`, `visibility`, `city_id`, `distance`) VALUES
+(1, 'Admin', 'Servyy', 'deadly.group.33@gmail.com', 'admin', '1', 'Admin', NULL, '0', 33000, NULL),
+(2, 'Elneris', 'Dang', 'elneris.dang@gmail.com', 'root', '0', 'Je recherche des services', NULL, '0', 33150, 5),
+(3, 'Adeline', 'Dubosc', 'adeline.dubosc@hotmail.fr', 'root', '0', 'Coucou, je cherche un petit bricoleur :)', NULL, '0', 33000, 20),
+(4, 'Geoffrey', 'Bedle', 'geoffrey.bedle@gmail.com', 'root', '0', 'Je suis bricoleur si vous voulez', NULL, '0', NULL, NULL),
+(5, 'Laure', 'Fraysse', 'laure.fraysse@gmail.com', 'root', '0', 'J\'adore le jardinage', NULL, '0', NULL, NULL),
+(6, 'Yannick', 'Descombe', 'yanlechaka@sfr.fr', 'root', '0', 'Je suis un bon bricoleur', NULL, '0', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_service`
+--
+
+CREATE TABLE `user_service` (
+  `user_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `city`
+--
+ALTER TABLE `city`
+  ADD KEY `ville_nom` (`name`),
+  ADD KEY `zip_code` (`zip_code`);
+
+--
+-- Index pour la table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author_id` (`author_id`),
+  ADD KEY `provider_id` (`provider_id`);
+
+--
+-- Index pour la table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `city_id` (`city_id`);
+
+--
+-- Index pour la table `user_service`
+--
+ALTER TABLE `user_service`
+  ADD KEY `service_id` (`service_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`provider_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`zip_code`);
+
+--
+-- Contraintes pour la table `user_service`
+--
+ALTER TABLE `user_service`
+  ADD CONSTRAINT `user_service_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `user_service_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
