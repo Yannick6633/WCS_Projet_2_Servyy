@@ -8,6 +8,9 @@
 
 namespace App\Controller;
 
+use App\Model\ServiceManager;
+use App\Model\UserManager;
+
 class HomeController extends AbstractController
 {
 
@@ -21,6 +24,12 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $serviceManager = new ServiceManager();
+        $services = $serviceManager->selectRandom();
+
+        $userManager = new UserManager();
+        $users = $userManager->selectService();
+
+        return $this->twig->render('Home/index.html.twig', ['services' => $services, 'users' => $users]);
     }
 }

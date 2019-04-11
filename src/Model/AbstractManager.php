@@ -52,6 +52,16 @@ abstract class AbstractManager
     }
 
     /**
+     * Get all row from database.
+     *
+     * @return array
+     */
+    public function selectRandom(): array
+    {
+        return $this->pdo->query('SELECT * FROM ' . $this->table . ' WHERE id = 1 OR id = 2 OR id = 10')->fetchAll();
+    }
+
+    /**
      * Get one row from database by ID.
      *
      * @param  int $id
