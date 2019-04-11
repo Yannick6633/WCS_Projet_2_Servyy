@@ -9,18 +9,18 @@
 
 namespace App\Controller;
 
-use App\Model\ServiceManager;
+use App\Model\UserManager;
 
 /**
- * Class ItemController
+ * Class UserController
  *
  */
-class ServiceController extends AbstractController
+class UserController extends AbstractController
 {
 
 
     /**
-     * Display item listing
+     * Display user listing
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -29,15 +29,15 @@ class ServiceController extends AbstractController
      */
     public function index()
     {
-        $serviceManager = new ServiceManager();
-        $items = $serviceManager->selectAll();
+        $userManager = new UserManager();
+        $users = $userManager->selectAll();
 
-        return $this->twig->render('Service/service.html.twig', ['items' => $items]);
+        return $this->twig->render('Home/index.html.twig', ['users' => $users]);
     }
 
 
     /**
-     * Display item informations specified by $id
+     * Display user informations specified by $id
      *
      * @param int $id
      * @return string
@@ -47,15 +47,15 @@ class ServiceController extends AbstractController
      */
     public function show(int $id)
     {
-        $serviceManager = new ServiceManager();
-        $item = $serviceManager->selectOneById($id);
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($id);
 
-        return $this->twig->render('Item/show.html.twig', ['item' => $item]);
+        return $this->twig->render('User/show.html.twig', ['user' => $user]);
     }
 
 
     /**
-     * Display item edition page specified by $id
+     * Display user edition page specified by $id
      *
      * @param int $id
      * @return string
@@ -65,20 +65,20 @@ class ServiceController extends AbstractController
      */
     public function edit(int $id): string
     {
-        $serviceManager = new ServiceManager();
-        $item = $serviceManager->selectOneById($id);
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $item['title'] = $_POST['title'];
-            $serviceManager->update($item);
+            $user['title'] = $_POST['title'];
+            $userManager->update($user);
         }
 
-        return $this->twig->render('Item/edit.html.twig', ['item' => $item]);
+        return $this->twig->render('User/edit.html.twig', ['user' => $user]);
     }
 
 
     /**
-     * Display item creation page
+     * Display user creation page
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -89,27 +89,27 @@ class ServiceController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $serviceManager = new ServiceManager();
-            $item = [
+            $userManager = new UserManager();
+            $user = [
                 'title' => $_POST['title'],
             ];
-            $id = $serviceManager->insert($item);
-            header('Location:/item/show/' . $id);
+            $id = $userManager->insert($user);
+            header('Location:/user/show/' . $id);
         }
 
-        return $this->twig->render('Item/add.html.twig');
+        return $this->twig->render('User/add.html.twig');
     }
 
 
     /**
-     * Handle item deletion
+     * Handle user deletion
      *
      * @param int $id
      */
     public function delete(int $id)
     {
-        $serviceManager = new ServiceManager();
-        $serviceManager->delete($id);
-        header('Location:/item/index');
+        $userManager = new UserManager();
+        $userManager->delete($id);
+        header('Location:/user/index');
     }
 }

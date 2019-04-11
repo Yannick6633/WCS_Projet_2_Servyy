@@ -12,12 +12,12 @@ namespace App\Model;
 /**
  *
  */
-class ServiceManager extends AbstractManager
+class UserManager extends AbstractManager
 {
     /**
      *
      */
-    const TABLE = 'service';
+    const TABLE = 'user';
 
     /**
      *  Initializes this class.
@@ -32,11 +32,11 @@ class ServiceManager extends AbstractManager
      * @param array $service
      * @return int
      */
-    public function insert(array $service): int
+    public function insert(array $user): int
     {
         // prepared request
         $statement = $this->pdo->prepare("INSERT INTO $this->table (`title`) VALUES (:title)");
-        $statement->bindValue('title', $service['title'], \PDO::PARAM_STR);
+        $statement->bindValue('title', $user['title'], \PDO::PARAM_STR);
 
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
@@ -60,14 +60,24 @@ class ServiceManager extends AbstractManager
      * @param array $service
      * @return bool
      */
-    public function update(array $service):bool
+    public function update(array $user):bool
     {
 
         // prepared request
         $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
-        $statement->bindValue('id', $service['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $service['title'], \PDO::PARAM_STR);
+        $statement->bindValue('id', $user['id'], \PDO::PARAM_INT);
+        $statement->bindValue('title', $user['title'], \PDO::PARAM_STR);
 
         return $statement->execute();
+    }
+
+    /**
+     * Get all row from database.
+     *
+     * @return array
+     */
+    public function selectService(): array
+    {
+        return $this->pdo->query('SELECT * FROM user INNER JOIN user_service ON user.id = user_service.user_id INNER JOIN service ON service.id = user_service.service_id')->fetchAll();
     }
 }
