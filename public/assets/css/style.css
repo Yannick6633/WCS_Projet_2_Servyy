@@ -1,13 +1,36 @@
 body {
     padding-top: 56px;
+    color:#102542;
+}
+
+h2 {
+    color:#028090;
+    padding: 0.4em;
+    font-size: 2em;
 }
 .profil-top{
 
-    padding-top:8em;
-    padding-left:8em;
-
+    padding:3em;
+    padding-bottom:1em;
 }
 
 .profil-top img{
     border-radius: 50%;
 }
+
+.profil-item {
+    padding:3em;
+}
+
+.profil-description {
+    padding: 5em;
+    padding-top: 0;
+}
+
+.profil-service {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8em;
+    border: solid 1px #028090;
+}
+

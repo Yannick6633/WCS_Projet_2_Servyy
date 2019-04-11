@@ -3,34 +3,37 @@
 {% block title %}Profil{% endblock %}
 
 {% block content %}
-    <div >
+    <div class="container">
 
-        <div class="profil-top">
-            <img src="http://placebacon.net/400/300">
-            <h2>Francis Bacon</h2>
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-            <div>
-
+        <div class="row profil-top">
+            <div class="profil-item">
+                <img src="http://placebacon.net/200/200">
+                <h2>Francis Bacon</h2>
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 <div>
-                    Modifier
+
+                    <div>
+                        Modifier
+                    </div>
+                    <div>Supprimer</div>
                 </div>
-                <div>Supprimer</div>
+            </div>
+
+
+            <div class="profil-item profil-service">
+                <h2>Services proposés</h2>
+                <ul>
+                    <li>Jardinage</li>
+                    <li>Bricolage</li>
+                    <li>Enseignement</li>
+                    <li>Entretien</li>
+                </ul>
             </div>
         </div>
-    </div>
-
-    <div>
-        <h2>Services proposés</h2>
-        <ul>
-            <li>Jardinage</li>
-            <li>Bricolage</li>
-            <li>Enseignement</li>
-            <li>Entretien</li>
-        </ul>
-    </div>
-    <div>
-        <h2>Description</h2>
-        <p>blablablablablablabla</p>
+        <div class="profil-description">
+            <h2>Description</h2>
+            <p>blablablablablablabla</p>
+        </div>
     </div>
 
 {% endblock %}
