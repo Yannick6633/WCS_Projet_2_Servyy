@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Model\UserManager;
+
 class ProfilController extends AbstractController
 {
 
@@ -21,6 +23,9 @@ class ProfilController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Profil/profil.html.twig');
+        $userManager = new UserManager();
+        $user = $userManager->selectById();
+
+        return $this->twig->render('Profil/profil.html.twig', ['user' => $user]);
     }
 }

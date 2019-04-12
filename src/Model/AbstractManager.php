@@ -6,6 +6,7 @@
  * Time: 20:52
  * PHP version 7
  */
+
 namespace App\Model;
 
 use App\Model\Connection;
@@ -49,6 +50,16 @@ abstract class AbstractManager
     public function selectAll(): array
     {
         return $this->pdo->query('SELECT * FROM ' . $this->table)->fetchAll();
+    }
+
+    /**
+     * Get all row from database.
+     *
+     * @return array
+     */
+    public function selectRandom(): array
+    {
+        return $this->pdo->query('SELECT * FROM ' . $this->table . ' WHERE id = 1 OR id = 2 OR id = 4')->fetchAll();
     }
 
     /**

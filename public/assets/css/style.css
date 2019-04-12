@@ -1,13 +1,115 @@
 body {
-    padding-top: 56px;
-}
-.profil-top{
 
-    padding-top:8em;
-    padding-left:8em;
-
+    color: #102542;
 }
 
-.profil-top img{
+.main-page{
+    margin-top: 82px;
+}
+
+h2 {
+    color: #101010;
+    padding: 0.4em;
+    font-size: 2em;
+}
+
+.bg-blue {
+    background-color: #102542;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.slogan {
+    display: flex;
+    flex-direction: column;
+    line-height: 1px;
+}
+
+.logo img {
+    width: auto;
+    height: 56px;}
+
+.logo h3 {
+    font-size: 22px;
+    color: #FFF;
+
+}
+
+.logo p {
+    font-size: 12px;
+    color: #1CAAC3;
+}
+
+.rate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rate img {
+    width: auto;
+    height: 300px;
+}
+
+.card-title a {
+    color: #102542;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #102542;
+    border-color: #102542;
+}
+
+.button-select {
+    margin-top: ;
+}
+
+.btn-blue {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    background-color: #1CAAC3;
+    border: solid #1CAAC3 1px;
+}
+
+.modifier {
+    display: flex;
+}
+
+.modifier div {
+    padding: 10px;
+}
+
+.profil-top {
+
+    padding-top: 2.5em;
+    padding-left: 8em;
+    padding-bottom: 1em;
+}
+
+.profil-top img {
     border-radius: 50%;
 }
+
+.profil-item {
+    padding: 1em;
+}
+
+.profil-description {
+    padding-top: 0;
+    padding-left: 8em;
+    padding-bottom: 4em;
+}
+
+.profil-service {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8em;
+    margin-bottom: 8em;
+    border: solid 1px #028090;
+    border-radius: 5px;
+}
+
