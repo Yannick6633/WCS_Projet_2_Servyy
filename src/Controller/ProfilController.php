@@ -23,11 +23,9 @@ class ProfilController extends AbstractController
      */
     public function index()
     {
-        $userManager= new UserManager();
-        $user = $userManager->selectById(3);
+        $userManager = new UserManager();
+        $user = $userManager->selectById();
 
         return $this->twig->render('Profil/profil.html.twig', ['user' => $user]);
     }
-
-
 }
