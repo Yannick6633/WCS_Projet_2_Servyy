@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  jeu. 11 avr. 2019 à 12:10
+-- Généré le :  ven. 12 avr. 2019 à 08:20
 -- Version du serveur :  8.0.15
 -- Version de PHP :  7.3.3
 
@@ -31,17 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `city` (
   `ville_id` int(11) NOT NULL,
   `ville_nom` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `ville_departement` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_slug` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_nom_simple` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_nom_reel` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_nom_soundex` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_nom_metaphone` varchar(22) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_code_postal` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_commune` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_code_commune` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `ville_departement` varchar(3) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_nom_simple` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_nom_reel` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_nom_soundex` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_nom_metaphone` varchar(22) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_code_postal` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_commune` varchar(3) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_code_commune` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ville_arrondissement` smallint(3) UNSIGNED DEFAULT NULL,
-  `ville_canton` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
+  `ville_canton` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ville_amdi` smallint(5) UNSIGNED DEFAULT NULL,
   `ville_population_2010` mediumint(11) UNSIGNED DEFAULT NULL,
   `ville_population_1999` mediumint(11) UNSIGNED DEFAULT NULL,
@@ -50,10 +50,10 @@ CREATE TABLE `city` (
   `ville_surface` float DEFAULT NULL,
   `ville_longitude_deg` float DEFAULT NULL,
   `ville_latitude_deg` float DEFAULT NULL,
-  `ville_longitude_grd` varchar(9) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_latitude_grd` varchar(8) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_longitude_dms` varchar(9) CHARACTER SET utf8 DEFAULT NULL,
-  `ville_latitude_dms` varchar(8) CHARACTER SET utf8 DEFAULT NULL,
+  `ville_longitude_grd` varchar(9) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_latitude_grd` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_longitude_dms` varchar(9) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ville_latitude_dms` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ville_zmin` mediumint(4) DEFAULT NULL,
   `ville_zmax` mediumint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -616,7 +616,7 @@ INSERT INTO `city` (`ville_id`, `ville_nom`, `ville_departement`, `ville_slug`, 
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
-  `content` text COLLATE utf8_unicode_ci,
+  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `rate` int(11) NOT NULL,
   `author_id` int(11) NOT NULL,
   `provider_id` int(11) NOT NULL
@@ -649,7 +649,7 @@ INSERT INTO `item` (`id`, `title`) VALUES
 
 CREATE TABLE `service` (
   `id` int(11) NOT NULL,
-  `label` varchar(55) COLLATE utf8_unicode_ci NOT NULL
+  `label` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -660,7 +660,7 @@ INSERT INTO `service` (`id`, `label`) VALUES
 (1, 'Bricolage'),
 (2, 'Jardinage'),
 (3, 'Déménagement'),
-(4, 'Entretient - Réparation'),
+(4, 'Entretien - Réparation'),
 (5, 'Cours'),
 (6, 'Garde d\'animaux'),
 (7, 'Garde d\'enfants'),
@@ -676,11 +676,11 @@ INSERT INTO `service` (`id`, `label`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `lastname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `firstname` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `phone` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `visibility` enum('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',

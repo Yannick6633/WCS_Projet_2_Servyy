@@ -82,4 +82,9 @@ class UserManager extends AbstractManager
     INNER JOIN user_service ON user.id = user_service.user_id 
     INNER JOIN service ON service.id = user_service.service_id')->fetchAll();
     }
+
+    public function selectById(): array
+    {
+        return $this->pdo->query(' SELECT * FROM ' . $this->table . ' WHERE id=5 ')->fetch();
+    }
 }

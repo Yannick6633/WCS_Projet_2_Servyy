@@ -3,16 +3,16 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+    <div class="container main-page">
+        <div class="dropdown ">
+            <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Category
+                Choisir un service
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Pet sitter</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                {% for service in services %}
+                <a class="dropdown-item" href="#">{{ service.label }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>

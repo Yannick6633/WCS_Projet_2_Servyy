@@ -30,9 +30,9 @@ class ServiceController extends AbstractController
     public function index()
     {
         $serviceManager = new ServiceManager();
-        $items = $serviceManager->selectAll();
+        $services = $serviceManager->selectAll();
 
-        return $this->twig->render('Service/service.html.twig', ['items' => $items]);
+        return $this->twig->render('Service/service.html.twig', ['services' => $services]);
     }
 
 
