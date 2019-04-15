@@ -87,4 +87,15 @@ class UserManager extends AbstractManager
     {
         return $this->pdo->query(' SELECT * FROM ' . $this->table . ' WHERE id=5 ')->fetch();
     }
+
+    public function selectBestRate(): array
+    {
+        return $this->pdo->query("SELECT service.label, user.id, user.firstname, user.lastname, 
+        user.description ,
+        CEIL((SUM(comment.rate)/COUNT(comment.rate))) AS moyenne 
+        FROM user LEFT JOIN comment ON user.id = comment.provider_id 
+        INNER JOIN user_service ON user_service.user_id = user.id 
+        INNER JOIN service ON service.id = user_service.service_id
+        WHERE user.status = '0' GROUP by user.id ORDER BY moyenne DESC LIMIT 4")->fetchAll();
+    }
 }

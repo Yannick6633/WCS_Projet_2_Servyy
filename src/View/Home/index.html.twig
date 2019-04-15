@@ -64,9 +64,9 @@
 
             {% for user in users %}
 
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="assets/images/users/{{ user.user_id }}.jpg"
+                        <a href="#"><img class="card-img-top" src="assets/images/users/{{ user.id }}.jpg"
                                          alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
@@ -76,7 +76,20 @@
                             <p class="card-text">{{ user.description }}</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
+                            <small class="text-muted">
+                                {% if user.moyenne > 0 and user.moyenne < 6 %}
+                                    {% for i in 0..user.moyenne - 1 %}
+                                        &#9733
+                                    {% endfor %}
+                                    {% if user.moyenne != 5 %}
+                                        {% for i in 0..5 - user.moyenne -1 %}
+                                            &#9734
+                                        {% endfor %}
+                                    {% endif %}
+                                {% else %}
+                                    N/C*
+                                {% endif %}
+                            </small>
                         </div>
                     </div>
                 </div>
