@@ -1,3 +1,4 @@
 parameters:
 	ignoreErrors:
 		- '#Constant [A-Z_]+ not found.#'
+		- 'End of line character is invalid;[A-Z_]+found "\r\n"7'
