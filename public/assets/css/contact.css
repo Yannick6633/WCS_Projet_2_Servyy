@@ -1,17 +1,35 @@
 form {
     border: 1px grey solid;
-    border-radius: 5px;
-    padding: 15px 15px;
+    border-radius: 8px;
+    padding: 60px 15px;
     margin-top: 150px;
-    margin-bottom: 150px;
+    margin-bottom: 60px;
+    background-color: #102542;
+    color:white;
 }
 
-h2{
+
+
+form label{
+    font-size: 1.2em;
+}
+
+
+h2,h4{
     text-align: center;
 }
 
+h2{
+    color: white;
+}
+
+h4{
+    color:green;
+    padding-top: 50px;
+}
+
 .error{
-    color:red;
+    color:#27a1bf;
 }
 
 button{
