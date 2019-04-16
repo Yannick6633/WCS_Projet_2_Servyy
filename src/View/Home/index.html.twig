@@ -77,12 +77,12 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">
-                                {% if user.moyenne > 0 and user.moyenne < 6 %}
-                                    {% for i in 0..user.moyenne - 1 %}
+                                {% if user.average > 0 and user.average < 6 %}
+                                    {% for i in 0..user.average - 1 %}
                                         &#9733
                                     {% endfor %}
-                                    {% if user.moyenne != 5 %}
-                                        {% for i in 0..5 - user.moyenne -1 %}
+                                    {% if user.average != 5 %}
+                                        {% for i in 0..5 - user.average -1 %}
                                             &#9734
                                         {% endfor %}
                                     {% endif %}
