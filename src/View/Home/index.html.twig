@@ -77,7 +77,7 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">
-                                {% if user.average > 0 and user.average < 6 %}
+                                {% if user.commentsCount > 0 %}
                                     {% for i in 0..user.average - 1 %}
                                         &#9733
                                     {% endfor %}
