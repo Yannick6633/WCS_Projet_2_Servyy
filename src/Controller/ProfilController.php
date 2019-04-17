@@ -23,6 +23,10 @@ class ProfilController extends AbstractController
      */
     public function index()
     {
+        if (!isset($_SESSION['email'])) {
+            header('Location: /Login/index');
+            exit;
+        }
         $userManager = new UserManager();
         $user = $userManager->selectById();
 
