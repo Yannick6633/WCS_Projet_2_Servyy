@@ -25,11 +25,12 @@
                     <a class="nav-link" href="#">S'inscrire</a>
                 </li>
                 {% endif %}
-                {% if session %}
+                {% if session.email %}
                     <li class="nav-item">
                         <a class="nav-link" href="/Login/logout">Se Deconnecter</a>
                     </li>
-                {% else %}
+                {% endif %}
+                {% if session == false %}
                     <li class="nav-item">
                         <a class="nav-link" href="/Login/index">Se Connecter</a>
                     </li>
