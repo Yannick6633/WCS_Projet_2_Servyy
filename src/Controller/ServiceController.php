@@ -36,7 +36,7 @@ class ServiceController extends AbstractController
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
 
-        return $this->twig->render('Service/service.html.twig', ['users' => $users, 'services' => $services]);
+        return $this->twig->render('Service/service.html.twig', ['users' => $users, 'services' => $services,'pageservice'=>'active']);
     }
 
 

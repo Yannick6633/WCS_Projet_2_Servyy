@@ -65,6 +65,7 @@ class ContactController extends AbstractController
 
         return $this->twig->render('Contact/contact.html.twig', ['post' => $_POST,
             'errors' => $errors,
-            'succes' => $succesMessage]);
+            'succes' => $succesMessage,
+            'pagecontact'=>'active']);
     }
 }
