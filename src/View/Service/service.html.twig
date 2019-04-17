@@ -18,135 +18,37 @@
     </div>
     <div class="container">
         <div class="row">
+            {% for user in users %}
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/1.jpg" alt=""></a>
+                    <a href="#"><img class="card-img-top" src="/assets/images/users/{{ user.id }}.jpg" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="/Profil/index">Laure</a>
+                            <a href="/Profil/index">{{ user.firstname }}</a>
                         </h4>
-                        <h5>Pet sitter</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
+                        <h5>{{ user.label }}</h5>
+                        <p class="card-text">{{ user.description }}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        <small class="text-muted">
+                            {% if user.commentsCount > 0 %}
+                                {% for i in 0..user.average - 1 %}
+                                    &#9733
+                                {% endfor %}
+                                {% if user.average != 5 %}
+                                    {% for i in 0..5 - user.average -1 %}
+                                        &#9734
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                N/C*
+                            {% endif %}
+                        </small>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/5.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/6.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques1</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Ville : Bordeaux<br>
-                            Rayon : 20 km</p>
+            {% endfor %}
 
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/7.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/5.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/6.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/7.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="/assets/images/users/8.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Jacques</a>
-                        </h4>
-                        <h5>Réparation</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
