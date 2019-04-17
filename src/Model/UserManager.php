@@ -87,4 +87,15 @@ class UserManager extends AbstractManager
     {
         return $this->pdo->query(' SELECT * FROM ' . $this->table . ' WHERE id=5 ')->fetch();
     }
+
+    public function verifyEmail($email)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM  $this->table  WHERE email = :email");
+        $statement->bindValue('email', $email, \PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return count($statement->fetchAll());
+
+    }
 }
