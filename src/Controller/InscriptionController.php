@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Model\UserManager;
 
 class InscriptionController extends AbstractController

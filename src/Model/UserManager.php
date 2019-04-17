@@ -96,6 +96,5 @@ class UserManager extends AbstractManager
         $statement->execute();
 
         return count($statement->fetchAll());
-
     }
 }

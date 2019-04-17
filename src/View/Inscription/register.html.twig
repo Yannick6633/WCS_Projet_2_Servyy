@@ -15,19 +15,19 @@
                         <div class="form-group">
                             <label for="firstname">Prénom</label>
                             <input type="text" class="form-control" id="firstname" name="firstname"
-                                   placeholder="Votre prénom" value="{{ post.firstname }}">
+                                   placeholder="Votre prénom" value="{{ post.firstname }} required">
                             <div class="error">{{ errors.firstname }}</div>
                         </div>
                         <div class="form-group">
                             <label for="lastname">Nom</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"
-                                   placeholder="Votre nom" value="{{ post.lastname }}">
+                                   placeholder="Votre nom" value="{{ post.lastname }} required">
                             <div class="error">{{ errors.lastname }}</div>
                         </div>
                         <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                   placeholder="nom@exemple.com" value="{{ post.email }}">
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="nom@exemple.com" value="{{ post.email }} required">
                             <div class="error">{{ errors.email }}</div>
                             <div class="error">{{ errors.email2 }}</div>
                             <div class="error">{{ errors.email3 }}</div>
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Mot de passe">
+                                   placeholder="Mot de passe" required>
                             <div class="error"></div>
                         </div>
 
