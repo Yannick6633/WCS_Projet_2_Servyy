@@ -30,6 +30,10 @@ class HomeController extends AbstractController
         $userManager = new UserManager();
         $users = $userManager->selectBestRate();
 
-        return $this->twig->render('Home/index.html.twig', ['services' => $services, 'users' => $users]);
+        return $this->twig->render('Home/index.html.twig', [
+            'services' => $services,
+            'users' => $users,
+            'session'=>$_SESSION
+        ]);
     }
 }
