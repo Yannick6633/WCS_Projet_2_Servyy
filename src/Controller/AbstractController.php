@@ -9,7 +9,6 @@
 
 namespace App\Controller;
 
-
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -38,7 +37,8 @@ abstract class AbstractController
                 'debug' => APP_DEV,
             ]
         );
+        $this->twig->addGlobal('session', '$_SESSION');
         $this->twig->addExtension(new DebugExtension());
-        $this->twig->addGlobal('server',$_SERVER);
+        $this->twig->addGlobal('server', $_SERVER);
     }
 }

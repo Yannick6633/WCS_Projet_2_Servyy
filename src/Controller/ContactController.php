@@ -64,6 +64,5 @@ class ContactController extends AbstractController
             'errors' => $errors,
             'succes' => $succesMessage
         ]);
-
     }
 }

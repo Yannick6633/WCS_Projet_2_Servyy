@@ -110,4 +110,14 @@ class UserManager extends AbstractManager
         INNER JOIN service ON service.id = user_service.service_id
         WHERE user.status = '0' GROUP by user.id ORDER BY average DESC")->fetchAll();
     }
+
+
+    public function selectEmail($email): array
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE email =:email");
+        $statement->bindValue(':email', $email, \PDO::PARAM_STR);
+
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 }
