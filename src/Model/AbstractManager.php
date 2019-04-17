@@ -59,7 +59,7 @@ abstract class AbstractManager
      */
     public function selectRandom(): array
     {
-        return $this->pdo->query('SELECT * FROM ' . $this->table . ' WHERE id = 1 OR id = 2 OR id = 4')->fetchAll();
+        return $this->pdo->query('SELECT * FROM ' . $this->table . ' ORDER BY rand() LIMIT 3')->fetchAll();
     }
 
     /**

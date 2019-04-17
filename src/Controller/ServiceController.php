@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Model\ServiceManager;
+use App\Model\UserManager;
 
 /**
  * Class ItemController
@@ -29,10 +30,13 @@ class ServiceController extends AbstractController
      */
     public function index()
     {
+        $userManager = new UserManager();
+        $users = $userManager->selectUserByRate();
+
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
 
-        return $this->twig->render('Service/service.html.twig', ['services' => $services]);
+        return $this->twig->render('Service/service.html.twig', ['users' => $users, 'services' => $services]);
     }
 
 
