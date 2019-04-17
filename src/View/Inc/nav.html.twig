@@ -12,28 +12,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item{% if server.REQUEST_URI == '/Service/index' %} active{% endif %}">
                     <a class="nav-link" href="/Service/index">Services
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Contact/index">Contact</a>
+                <li class="nav-item{% if server.REQUEST_URI == '/Contact/index' %} active{% endif %} ">
+                    <a class="nav-link " href="/Contact/index">Contact</a>
                 </li>
+
+
                 {% if session == false %}
-                <li class="nav-item">
+                <li class="nav-item {% if server.REQUEST_URI == 'Inscription/register' %} active{% endif %}">
                     <a class="nav-link" href="#">S'inscrire</a>
                 </li>
                 {% endif %}
                 {% if session %}
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/Login/logout">Se Deconnecter</a>
                     </li>
                 {% else %}
-                    <li class="nav-item">
+                    <li class="nav-item {% if server.REQUEST_URI == '/Login/index' %}} active{% endif %}">
                         <a class="nav-link" href="/Login/index">Se Connecter</a>
                     </li>
                 {% endif %}
+
+
             </ul>
         </div>
     </div>
