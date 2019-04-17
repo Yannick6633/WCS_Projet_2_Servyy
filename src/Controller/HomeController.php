@@ -32,8 +32,7 @@ class HomeController extends AbstractController
 
         return $this->twig->render('Home/index.html.twig', [
             'services' => $services,
-            'users' => $users,
-            'session'=>$_SESSION
+            'users' => $users
         ]);
     }
 }

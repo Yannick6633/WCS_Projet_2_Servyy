@@ -39,7 +39,6 @@ class ServiceController extends AbstractController
         return $this->twig->render('Service/service.html.twig', [
             'users' => $users,
             'services' => $services,
-            'session'=>$_SESSION
         ]);
     }
 
