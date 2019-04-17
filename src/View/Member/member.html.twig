@@ -41,12 +41,13 @@
 
             <form class="form-row" action="/action_page.php">
                 <div class="col">
-                <label for="email" class="mr-sm-2">Identifiant (mail):</label>
-                <input type="email" class="form-control mb-2 mr-sm-2" id="email" placeholder="{{ memberData.email }}">
+                    <label for="email" class="mr-sm-2">Identifiant (mail):</label>
+                        <input type="email" class="form-control mb-2 mr-sm-2" id="email" placeholder="{{ memberData.email }}">
                 </div>
+
                 <div class="col">
-                <label for="pwd" class="mr-sm-2">Mot de passe:</label>
-                <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
+                    <label for="pwd" class="mr-sm-2">Mot de passe:</label>
+                        <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
                 </div>
                     <div class="row">
                     <div class="col">
@@ -90,15 +91,15 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                         <input type="checkbox">
+                            </div>
+                        </div>
+                            <input type="text" class="form-control" placeholder="{{ service.label }}">
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="{{ service.label }}">
-            </div>
-
-                </div>
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
+
 
     <div class = boutons">
         <div class="row">

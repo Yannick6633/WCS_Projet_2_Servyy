@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Model\ServiceManager;
 use App\Model\UserManager;
 
@@ -20,8 +19,6 @@ class MemberController extends AbstractController
         $services = $serviceManager->selectAll();
 
 
-        return $this->twig->render('Member/member.html.twig',['services'=>$services,
-            'memberData'=>$userData]);
+        return $this->twig->render('Member/member.html.twig', ['services'=>$services,]);
     }
 }
-
