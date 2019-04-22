@@ -52,7 +52,7 @@ class Connection
                 $this->pdoConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (\PDOException $e) {
-            die('<div class="error">ErrorController !: ' . $e->getMessage() . '</div>');
+            die('<div class="error">Error !: ' . $e->getMessage() . '</div>');
         }
     }
 
