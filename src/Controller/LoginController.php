@@ -18,7 +18,7 @@ class LoginController extends AbstractController
      */
     public function index()
     {
-        $this->authenticator->checkLogged();
+        $this->authenticator->isLogged();
 
         $errors = [];
         if (isset($_POST['submit'])) {

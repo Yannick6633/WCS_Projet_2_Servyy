@@ -23,7 +23,7 @@ class ProfilController extends AbstractController
      */
     public function index()
     {
-        $this->authenticator->checkLogged();
+        $this->authenticator->isAuthorized();
         $userManager = new UserManager();
         $user = $userManager->selectById();
 
