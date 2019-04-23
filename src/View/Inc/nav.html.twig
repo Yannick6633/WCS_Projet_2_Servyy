@@ -12,6 +12,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                {% if session %}
+                    {% if session.status == 1 %}
+                        <li class="nav-item{% if server.REQUEST_URI == '/Admin/index' %} active{% endif %}">
+                            <a class="nav-link" href="/Admin/index">Espace Admin
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if session.status == 0 %}
+                        <li class="nav-item{% if server.REQUEST_URI == '/Member/index' %} active{% endif %}">
+                            <a class="nav-link" href="/Member/index">Espace Membre
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
                 <li class="nav-item{% if server.REQUEST_URI == '/Service/index' %} active{% endif %}">
                     <a class="nav-link" href="/Service/index">Services
                         <span class="sr-only">(current)</span>
@@ -24,7 +41,7 @@
 
                 {% if session == false %}
                 <li class="nav-item {% if server.REQUEST_URI == 'Inscription/register' %} active{% endif %}">
-                    <a class="nav-link" href="#">S'inscrire</a>
+                    <a class="nav-link" href="/Inscription/register">S'inscrire</a>
                 </li>
                 {% endif %}
                 {% if session.email %}
