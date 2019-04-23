@@ -38,8 +38,6 @@
                 </table>
             </div>
         </div>
-    </div>
-    <div class="card mb-3">
         <div class="card-header">
             Ajouter un service
         </div>
@@ -50,10 +48,12 @@
                     <input type="text" name="label" class="form-control" id="service" placeholder="Service">
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
+                    <input type="hidden" name="sendFile" value="1"/>
                     <label for="picture" class="sr-only">Image</label>
-                    <input type="file" name="picture" class="" id="picture">
+                    <input type="file" name="picture[]" class="" id="picture">
                 </div>
-                <button type="submit" name="addService" class="btn btn-primary mb-2">Ajouter</button>
+                <button type="submit" name="addService" value="addService" class="btn btn-primary mb-2">Ajouter</button>
             </form>
         </div>
     </div>
