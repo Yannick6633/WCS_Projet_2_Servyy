@@ -18,10 +18,8 @@ class LoginController extends AbstractController
      */
     public function index()
     {
-        if (isset($_SESSION['email'])) {
-            header('Location: /Home/index');
-            exit;
-        }
+        $this->authenticator->checkLogged();
+
         $errors = [];
         if (isset($_POST['submit'])) {
             $userManager = new UserManager();
