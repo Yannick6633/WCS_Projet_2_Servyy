@@ -29,23 +29,14 @@ class CommentController extends AbstractController
      */
     public function index()
     {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            //if (empty($_POST['email'])) {
-                //$errors['emailError'] = ' * L\' adresse mail est obligatoire';
-            //}
-
             $commentManager = new CommentManager();
-            $comment = [
-                'content' => $_POST['content'],
-                'rate' => $_POST['rate']
-            ];
             $commentManager->insert($_POST);
             header('location: /Service/index');
-
         }
 
-        return $this->twig->render('Comment/comment.html.twig', ['comment' => $comment, 'post' => $_POST]);
+        return $this->twig->render('Comment/comment.html.twig', ['post' => $_POST]);
     }
 
 
@@ -83,7 +74,7 @@ class CommentController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $comment['title'] = $_POST['title'];
-            $commentManager->update($comment);
+            //$commentManager->update($comment);
         }
 
         return $this->twig->render('Comment/edit.html.twig', ['comment' => $comment, 'session' => $_SESSION]);

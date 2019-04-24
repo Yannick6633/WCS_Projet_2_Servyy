@@ -49,13 +49,10 @@ class CommentManager extends AbstractManager
     {
     // prepared request
 
-    $statement = $this->pdo->prepare("INSERT INTO comment (rate, content) VALUES (:rate, :content)");
-    $statement->bindValue(':rate', $comment['rate'], \PDO::PARAM_INT);
-    $statement->bindValue(':content', $comment['content'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO comment (rate, content) VALUES (:rate, :content)");
+        $statement->bindValue(':rate', $comment['rate'], \PDO::PARAM_INT);
+        $statement->bindValue(':content', $comment['content'], \PDO::PARAM_STR);
 
-    return $statement->execute();
+        return $statement->execute();
     }
-
 }
-
-
