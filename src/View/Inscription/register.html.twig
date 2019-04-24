@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{%  extends 'layout.html.twig' %}
 
 {% block title %}Formulaire d'inscription{% endblock %}
 
@@ -66,13 +66,13 @@
                         <div class="service-detail-gn">
                             <div class="service-detail">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="2" id="jardinage">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="2" id="jardinage">
                                     <label class="form-check-label" for="jardinage">
                                         Jardinage
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="bricolage">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="1" id="bricolage">
                                     <label class="form-check-label" for="bricolage">
                                         Bricolage
                                     </label>
@@ -80,14 +80,14 @@
                             </div>
                             <div class="service-detail">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="3" id="demenagement">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="3" id="demenagement">
                                     <label class="form-check-label" for="demenagement">
                                         Déménagement
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="4" id="entretien">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="4" id="entretien">
                                     <label class="form-check-label" for="entretien">
                                         Entretien-Réparation
                                     </label>
@@ -95,14 +95,14 @@
                             </div>
                             <div class="service-detail">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="5" id="cours">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="5" id="cours">
                                     <label class="form-check-label" for="cours">
                                         Cours
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="6" id="gardedanimaux">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="6" id="gardedanimaux">
                                     <label class="form-check-label" for="gardedanimaux">
                                         Garde d'animaux
                                     </label>
@@ -111,14 +111,14 @@
 
                             <div class="service-detail">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="7" id="gardeenfant">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="7" id="gardeenfant">
                                     <label class="form-check-label" for="gardeenfant">
                                         Garde d'enfants
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="8" id="services">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="8" id="services">
                                     <label class="form-check-label" for="services">
                                         Service à la personne
                                     </label>
@@ -128,14 +128,14 @@
                             <div class="service-detail">
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="9" id="plomberie">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="9" id="plomberie">
                                     <label class="form-check-label" for="plomberie">
                                         Plomberie
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="10" id="electricien">
+                                    <input class="form-check-input" type="checkbox" name="services[]" value="10" id="electricien">
                                     <label class="form-check-label" for="electricien">
                                         Electricien
                                     </label>

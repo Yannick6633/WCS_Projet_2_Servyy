@@ -9,7 +9,9 @@
 namespace App\Controller;
 
 use App\Model\CityManager;
+use App\Model\ServiceManager;
 use App\Model\UserManager;
+use App\Model\UserServiceManager;
 
 class InscriptionController extends AbstractController
 {
@@ -61,6 +63,12 @@ class InscriptionController extends AbstractController
             $this->insertMember($_POST);
         }
 
+        if (empty($errors) && !empty($_POST['services'])) {
+            $userManager = new UserManager();
+            $lastUser = $userManager->selectLastId();
+            $this->insertServices($_POST['services'], $lastUser);
+        }
+
         return $this->twig->render('Inscription/register.html.twig', ['errors' => $errors,
             'post' => $_POST, 'valide' => $valide]);
     }
@@ -77,5 +85,13 @@ class InscriptionController extends AbstractController
             $value['visibility'] = '0';
         }
         $newMemberManager->insert($value, $id_city);
+    }
+
+    public function insertServices($services, $user)
+    {
+        $servicesManager = new UserServiceManager();
+        foreach ($services as $service => $value) {
+            $servicesManager->insert($value, $user);
+        }
     }
 }

@@ -78,4 +78,12 @@ abstract class AbstractManager
 
         return $statement->fetch();
     }
+
+    public function selectLastId()
+    {
+        $statement = $this->pdo->prepare("SELECT id FROM $this->table ORDER BY id DESC LIMIT 1");
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }
