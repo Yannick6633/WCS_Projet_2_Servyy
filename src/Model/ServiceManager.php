@@ -29,18 +29,16 @@ class ServiceManager extends AbstractManager
 
 
     /**
-     * @param array $service
-     * @return int
+     * @param string $service
+     * @return void
      */
-    public function insert(array $service): int
+    public function insert(string $service): void
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (`title`) VALUES (:title)");
-        $statement->bindValue('title', $service['title'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (`label`) VALUES (:label)");
+        $statement->bindValue('label', $service, \PDO::PARAM_STR);
 
-        if ($statement->execute()) {
-            return (int)$this->pdo->lastInsertId();
-        }
+        $statement->execute();
     }
 
 
