@@ -65,7 +65,7 @@ h2 {
 }
 
 .button-select {
-    margin-top: ;
+    margin-top:0.8em ;
 }
 
 .btn-blue {
@@ -112,4 +112,47 @@ h2 {
     border: solid 1px #028090;
     border-radius: 5px;
 }
+
+
+.cadre{
+    border: solid 10px midnightblue;
+    padding: 50px;
+}
+
+
+
+.rating {
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+.rating span {
+    font-size: 40px;
+    display: inline-block;
+    color: orangered;
+
+}
+
+.rating:hover span:before {
+    content: '\2605';
+    position: absolute;
+
+}
+
+.rating span:hover ~ span:before {
+    content: '';
+}
+
+
+
+
+
+
+
+
+
+
+
 
