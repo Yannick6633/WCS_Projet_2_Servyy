@@ -23,9 +23,20 @@ class ProfilController extends AbstractController
      */
     public function index()
     {
+        $this->authenticator->isAuthorized();
         $userManager = new UserManager();
         $user = $userManager->selectById();
 
         return $this->twig->render('Profil/profil.html.twig', ['user' => $user]);
+    }
+
+
+    public function show()
+    {
+        $userManager = new UserManager();
+        $user = $userManager->selectAll();
+        $errors = [];
+        return $this->twig->render('Profil/profil.html.twig', ['users' => $user,
+            'errors' => $errors]);
     }
 }
