@@ -28,19 +28,22 @@ class UserManager extends AbstractManager
     }
 
 
-    /**
-     * @param array $user
-     * @return int
-     */
-    public function insert(array $user): int
+    public function insert(array $user, $city)
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (`title`) VALUES (:title)");
-        $statement->bindValue('title', $user['title'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO $this->table 
+        (firstname, lastname, email, phone, visibility, password, description, city_id) 
+        VALUES (:firstname, :lastname, :email, :phone, :visibility, :password, :description, :city_id)");
+        $statement->bindValue('firstname', $user['firstname'], \PDO::PARAM_STR);
+        $statement->bindValue('lastname', $user['lastname'], \PDO::PARAM_STR);
+        $statement->bindValue('email', $user['email'], \PDO::PARAM_STR);
+        $statement->bindValue('phone', $user['phone'], \PDO::PARAM_STR);
+        $statement->bindValue('visibility', $user['visibility'], \PDO::PARAM_STR);
+        $statement->bindValue('password', $user['password'], \PDO::PARAM_STR);
+        $statement->bindValue('description', $user['description'], \PDO::PARAM_STR);
+        $statement->bindValue('city_id', $city, \PDO::PARAM_INT);
 
-        if ($statement->execute()) {
-            return (int)$this->pdo->lastInsertId();
-        }
+        $statement->execute();
     }
 
 
