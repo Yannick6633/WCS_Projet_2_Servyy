@@ -1,6 +1,6 @@
 parameters:
     git_dir: .
-    bin_dir: vendor/bin
+    bin_dir: ./vendor/bin
     tasks:
         phpcs:
             standard: ./phpcs.xml
