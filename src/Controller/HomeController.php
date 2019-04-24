@@ -28,8 +28,11 @@ class HomeController extends AbstractController
         $services = $serviceManager->selectRandom();
 
         $userManager = new UserManager();
-        $users = $userManager->selectService();
+        $users = $userManager->selectBestRate();
 
-        return $this->twig->render('Home/index.html.twig', ['services' => $services, 'users' => $users]);
+        return $this->twig->render('Home/index.html.twig', [
+            'services' => $services,
+            'users' => $users
+        ]);
     }
 }
