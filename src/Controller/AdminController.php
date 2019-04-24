@@ -39,13 +39,18 @@ class AdminController extends AbstractController
         header('Location:/Admin/index');
     }
 
-    public function modifyUser(int $id)
+    public function modifyUser($userId)
     {
         $userManager = new UserManager();
-        $user = $userManager->selectOneById($id);
-        $user['status'] = 1;
-        $userManager->update($user);
-        header('Location:/Admin/index');
+        // "Ancien" utilisateur
+        $user = $userManager->selectOneById($userId);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            // met à jour avec les données issues du post
+            $user = $userManager->updateFromAdmin($_POST);
+        }
+
+        return $this->twig->render('Admin/modifyUser.html.twig', ['user' => $user]);
     }
 
     public function add()
