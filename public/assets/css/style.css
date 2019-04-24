@@ -3,7 +3,7 @@ body {
     color: #102542;
 }
 
-.main-page{
+.main-page {
     margin-top: 82px;
 }
 
@@ -30,7 +30,8 @@ h2 {
 
 .logo img {
     width: auto;
-    height: 56px;}
+    height: 56px;
+}
 
 .logo h3 {
     font-size: 22px;
@@ -65,6 +66,7 @@ h2 {
 }
 
 .button-select {
+
     margin-top:0.8em ;
 }
 
@@ -113,6 +115,22 @@ h2 {
     border-radius: 5px;
 }
 
+.inscription-form {
+
+    margin: 1% 20% 1% 20%;
+}
+
+.service-detail-gn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-detail div {
+    margin-bottom: 10px;
+}
+
+/* PAGE 404 */
+
 
 .cadre{
     border: solid 10px midnightblue;
@@ -160,13 +178,8 @@ h1{
     text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
+.notfound .notfound-404 h1 {
+        font-size: 122px;
+    }
+}
 
