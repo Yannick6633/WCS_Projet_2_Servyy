@@ -1,8 +1,12 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/stylemember.css">
+{% endblock %}
+
 {% block title %}Page membre{% endblock %}
 
-{% block content %}
+    {% block content %}
 
     <div class="container main-page" id="body">
         <div class="row">
@@ -17,7 +21,7 @@
 
                 <img src="/assets/images/users/1.jpg" class="rounded-circle" alt="User pic">
 
-                        <form>
+                        <form class="bloctext">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Qui suis-je ? </label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -106,10 +110,10 @@
             <div class="col-5">
                 
                 <button type="button" class="btn btn-primary btn-block">Enregistrer</button>
-                <button type="button" class="btn btn-primary btn-block">Supprimer mon compte</button>
+                <a href="/member/delete/{{ user.id }}"><button type="button" class="btn btn-primary btn-block">Supprimer mon compte</button></a>
             </div>
         </div>
     </div>
 
 
-{% endblock %}
+    {% endblock %}

@@ -24,6 +24,15 @@ class MemberController extends AbstractController
         $user['password'] = sha1($user['password']);
 
 
+
+
         return $this->twig->render('Member/member.html.twig', ['services'=>$services,'user'=>$user]);
+    }
+
+    public function delete(int $id)
+    {
+        $userManager = new UserManager();
+        $userManager->delete($id);
+        header ("Location:/");
     }
 }
