@@ -32,11 +32,12 @@ class ServiceManager extends AbstractManager
      * @param string $service
      * @return void
      */
-    public function insert(string $service): void
+    public function insert(string $service, $image): void
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (`label`) VALUES (:label)");
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (label,picture) VALUES (:label, :picture)");
         $statement->bindValue('label', $service, \PDO::PARAM_STR);
+        $statement->bindValue('picture', $image, \PDO::PARAM_STR);
 
         $statement->execute();
     }
@@ -53,18 +54,14 @@ class ServiceManager extends AbstractManager
         $statement->execute();
     }
 
-
-    /**
-     * @param array $service
-     * @return bool
-     */
-    public function update(array $service):bool
+    public function update($label, $champs, $id)
     {
 
         // prepared request
-        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
-        $statement->bindValue('id', $service['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $service['title'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("UPDATE $this->table 
+        SET $champs = :label WHERE id=:id");
+        $statement->bindValue('label', $label, \PDO::PARAM_STR);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
 
         return $statement->execute();
     }

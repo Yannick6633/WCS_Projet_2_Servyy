@@ -1,0 +1,44 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block content %}
+
+    <div class="card mb-3">
+    <div class="card-header">
+        Modifier le service : {{ service.label }}</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Lien Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <form action="" method="post" enctype="multipart/form-data">
+                        <td><input type="text" class="form-control" name="label" value="{{ service.label }}"></td>
+                        <td>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
+                            <input type="hidden" name="sendFile" value="1"/>
+                            <input type="file" class="" name="picture[]">
+                        </td>
+                        <td><button class="btn" type="submit" name="modifyService">✔️</button></td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+            {% for error in errors %}
+                <div class="alert alert-alert">
+                    <strong>{{ error }}</strong>
+                </div>
+            {% endfor %}
+            {% for good in success %}
+                <div class="alert alert-success">
+                    <strong>{{ good }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
