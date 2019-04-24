@@ -39,6 +39,15 @@ class AdminController extends AbstractController
         header('Location:/Admin/index');
     }
 
+    public function modifyUser(int $id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($id);
+        $user['status'] = 1;
+        $userManager->update($user);
+        header('Location:/Admin/index');
+    }
+
     public function add()
     {
         $serviceManager = new serviceManager();

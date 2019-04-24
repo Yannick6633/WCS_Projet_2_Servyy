@@ -35,7 +35,7 @@
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.status }}</td>
-                    <td><button class="btn" name="update" type="submit">✏️</button> </td>
+                    <td><a class="btn" href="/Admin/modifyUser/{{ user.id }}" name="update" type="submit">✏️</a> </td>
                     <td><a class="btn" href="/Admin/deleteUser/{{ user.id }}" type="submit">❌</a></td>
                 </tr>
                 {% endfor %}
