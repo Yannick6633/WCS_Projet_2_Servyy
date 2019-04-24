@@ -8,7 +8,6 @@
 
 namespace App\Model;
 
-
 class CityManager extends AbstractManager
 {
     const TABLE = 'city';
@@ -27,5 +26,4 @@ class CityManager extends AbstractManager
 
         return $statement->fetchAll();
     }
-
 }
