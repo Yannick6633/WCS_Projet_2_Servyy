@@ -18,7 +18,12 @@ class MemberController extends AbstractController
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
 
+        $_SESSION['id'] = 5;
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($_SESSION['id']);
+        $user['password'] = sha1($user['password']);
 
-        return $this->twig->render('Member/member.html.twig', ['services'=>$services,]);
+
+        return $this->twig->render('Member/member.html.twig', ['services'=>$services,'user'=>$user]);
     }
 }
