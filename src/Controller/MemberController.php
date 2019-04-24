@@ -18,7 +18,7 @@ class MemberController extends AbstractController
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
 
-        $_SESSION['id'] = 3;
+
         $userManager = new UserManager();
         $user = $userManager->selectOneById($_SESSION['id']);
         $user['password'] = sha1($user['password']);
