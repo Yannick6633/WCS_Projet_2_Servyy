@@ -25,11 +25,18 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/services.html.twig', ['services' => $services]);
     }
 
-    public function delete(int $id)
+    public function deleteService(int $id)
     {
         $serviceManager = new serviceManager();
         $serviceManager->delete($id);
         header('Location:/Admin/services');
+    }
+
+    public function deleteUser(int $id)
+    {
+        $userManager = new UserManager();
+        $userManager->delete($id);
+        header('Location:/Admin/index');
     }
 
     public function add()
