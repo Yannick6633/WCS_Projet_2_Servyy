@@ -5,9 +5,15 @@ namespace App\Security;
 
 class Authentication
 {
-    protected $authenticator;
+    public function isLogged()
+    {
+        if (isset($_SESSION['email'])) {
+            header('Location: /Home/index');
+            exit;
+        }
+    }
 
-    public function checkLogged()
+    public function isAuthorized()
     {
         if (!isset($_SESSION['email'])) {
             header('Location: /Login/index');
