@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Comment{% endblock %}
+
+{% block content %}
+
+
+    <div class="container main-page">
+        <form method="POST">
+
+            <h1>Laissez un commentaire</h1>
+
+            <div class="form-row">
+
+                <div class="col-md-4 mb-3">
+                    <div class="form-group">
+                        <label for="email">email :</label>
+                        <input type="email" id="email" name="email" value="">
+                        <p></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre message : </label>
+                        <textarea class="form-control" id="message" name="content" value="" rows="3"></textarea>
+                        <p></p>
+                    </div>
+
+
+                    <div class="rating">
+                        {% for i in 1..5 %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="rate"
+                                   value="{{ i }}">
+                            <label class="form-check-label" for="inlineCheckbox1"><span>&#9734</span></label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-blue" value="submit" type="submit">Poster</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
