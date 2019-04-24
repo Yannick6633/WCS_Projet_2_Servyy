@@ -17,8 +17,6 @@ $vars = array_slice($routeParts, 2);
 if (class_exists($controller) && method_exists(new $controller(), $method)) {
     echo call_user_func_array([new $controller(), $method], $vars);
 } else {
-    header("HTTP/1.0 404 Not Found");
-    echo '<style>img { max-width: 100%; height: auto;}</style>
-    <a href="/"><img src="/assets/images/404.png" alt="error-404"></a>';
-    exit();
+    header('location: /Error/pageNotFound');
+    exit;
 }
