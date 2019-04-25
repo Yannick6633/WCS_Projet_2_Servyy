@@ -2,37 +2,55 @@
 
 {% block content %}
 
-<div class="card mb-3">
-    <div class="card-header">
-        Utilisateur à modifier
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr> <form action="/admin/modifyUser/{{  user.id }}" method="post">
-                    <td><input type="text" class="form-control" id="firstname" name="firstname"
-                               value="{{ user.firstname }}" ></td>
-                    <td><input type="text" class="form-control" id="lastname" name="lastname"
-                               value="{{ user.lastname }}" ></td>
-                    <td><input type="text" class="form-control" id="email" name="email"
-                               value="{{ user.email }}" ></td>
-                    <td><input type="text" class="form-control" id="status" name="status"
-                               value="{{ user.status }}" ></td>
-                          <input type="hidden" value="{{ user.id }}" name="id" />
-                    <td><button class="btn" name="modifyUser" type="submit">✔️</button></td>
-                    </form>
-                </tr>
-                </tbody>
-            </table>
+    <div class="card mb-3">
+        <div class="card-header">
+            Utilisateur à modifier
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <div class="alert alert-success">
+                        <strong>{{ valide2 }}</strong>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <form action="/admin/modifyUser/{{ user.id }}" method="post">
+                            <td><input type="text" class="form-control" id="firstname" name="firstname"
+                                       value="{{ user.firstname }}"></td>
+                            <td><input type="text" class="form-control" id="lastname" name="lastname"
+                                       value="{{ user.lastname }}"></td>
+                            <td><input type="text" class="form-control" id="email" name="email"
+                                       value="{{ user.email }}"></td>
+                            <td><select class="custom-select" id="status" name="status"
+                                        value="{{ user.status }}">
+                                    {% for i in 0..2 %}
+                                        <option value="{{ i }}"
+                                                {% if user.status == i %} selected
+                                                {% endif %}>
+                                            {% if i == 0 %} Profil en ligne {% endif %}
+                                            {% if i == 1 %} Administrateur {% endif %}
+                                            {% if i == 2 %} Profil caché {% endif %}
+                                        </option>
+                                    {% endfor %}
+                                    <input type="hidden" value="{{ user.id }}" name="id"/>
+                            <td>
+                                <button class="btn" name="modifyUser" type="submit">✔️</button>
+                            </td>
+
+                        </form>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="\Admin\index">Retour à la liste des utilisateurs</a>
+            </div>
         </div>
     </div>
 
