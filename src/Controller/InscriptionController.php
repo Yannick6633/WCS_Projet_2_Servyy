@@ -85,7 +85,7 @@ class InscriptionController extends AbstractController
             $value['visibility'] = '0';
         }
         $newMemberManager->insert($value, $id_city);
-    }
+    }git
 
     public function insertServices($services, $user)
     {
