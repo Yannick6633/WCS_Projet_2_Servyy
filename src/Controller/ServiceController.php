@@ -28,10 +28,10 @@ class ServiceController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index()
+    public function index(int $idServices = 0)
     {
         $userManager = new UserManager();
-        $users = $userManager->selectUserByRate();
+        $users = $userManager->selectUserByRate($idServices);
 
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
