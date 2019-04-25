@@ -13,6 +13,7 @@
                     <tr>
                         <th>id</th>
                         <th>Service</th>
+                        <th>Lien Image</th>
                         <th>Modifier</th>
                         <th>supprimer</th>
                     </tr>
@@ -21,6 +22,7 @@
                     <tr>
                         <th>id</th>
                         <th>Service</th>
+                        <th>Lien Image</th>
                         <th>Modifier</th>
                         <th>supprimer</th>
                     </tr>
@@ -32,6 +34,10 @@
                         <td>{{ service.label }}</td>
                         <td><a class="btn" href="/Admin/update/{{ service.id }}" type="submit">✏️</a> </td>
                         <td><a class="btn" href="/Admin/deleteService/{{ service.id }}" type="submit">❌</a></td>
+                        <td>{{ service.picture }}</td>
+                        <td><a class="btn" href="/Admin/modifyServices/{{ service.id }}" type="submit">✏️</a> </td>
+                        <td><a class="btn" href="/Admin/delete/{{ service.id }}" type="submit">❌</a></td>
+
                     </tr>
                     {% endfor %}
                     </tbody>
