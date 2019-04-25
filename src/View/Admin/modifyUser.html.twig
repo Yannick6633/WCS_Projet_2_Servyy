@@ -9,9 +9,11 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <div class="alert alert-success">
-                        <strong>{{ valide2 }}</strong>
-                    </div>
+                    {% if valide is defined %}
+                        <div class="alert alert-success">
+                            <strong>{{ valide }}</strong>
+                        </div>
+                    {% endif %}
                     <thead>
                     <tr>
                         <th>Prénom</th>
@@ -32,13 +34,7 @@
                             <td><select class="custom-select" id="status" name="status"
                                         value="{{ user.status }}">
                                     {% for i in 0..2 %}
-                                        <option value="{{ i }}"
-                                                {% if user.status == i %} selected
-                                                {% endif %}>
-                                            {% if i == 0 %} Profil en ligne {% endif %}
-                                            {% if i == 1 %} Administrateur {% endif %}
-                                            {% if i == 2 %} Profil caché {% endif %}
-                                        </option>
+                                        <option value="{{ i }}" {% if user.status == i %} selected {% endif %}>{{ i }}</option>
                                     {% endfor %}
                                     <input type="hidden" value="{{ user.id }}" name="id"/>
                             <td>

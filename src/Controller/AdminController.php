@@ -41,18 +41,21 @@ class AdminController extends AbstractController
 
     public function modifyUser($userId)
     {
+        $data = [];
         $userManager = new UserManager();
         // "Ancien" utilisateur
         $user = $userManager->selectOneById($userId);
-        $valide2 = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // met à jour avec les données issues du post
             $user = $userManager->updateFromAdmin($_POST);
-            $valide2 = 'L\'utilisateur a bien été mis à jour';
+            $valide = 'L\'utilisateur a bien été mis à jour';
+            $data['valide'] = $valide;
         }
 
-        return $this->twig->render('Admin/modifyUser.html.twig', ['user' => $user, 'valide2' => $valide2]);
+        $data['user'] = $user;
+
+        return $this->twig->render('Admin/modifyUser.html.twig', $data);
     }
 
     public function add()
