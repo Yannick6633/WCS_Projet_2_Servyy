@@ -45,13 +45,17 @@ class CommentManager extends AbstractManager
      * @param array $comment
      * @return bool
      */
-    public function insert(array $comment)
+    public function insert(array $comment, $idProvider, $idAuthor)
     {
     // prepared request
 
-        $statement = $this->pdo->prepare("INSERT INTO comment (rate, content) VALUES (:rate, :content)");
+        $statement = $this->pdo->prepare("
+            INSERT INTO comment (rate, content, author_id, provider_id) 
+            VALUES (:rate, :content, :idAuthor, :idProvider)");
         $statement->bindValue(':rate', $comment['rate'], \PDO::PARAM_INT);
         $statement->bindValue(':content', $comment['content'], \PDO::PARAM_STR);
+        $statement->bindValue(':idProvider', $idProvider, \PDO::PARAM_INT);
+        $statement->bindValue(':idAuthor', $idAuthor, \PDO::PARAM_INT);
 
         return $statement->execute();
     }

@@ -27,13 +27,13 @@ class CommentController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index()
+    public function index($id)
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $commentManager = new CommentManager();
-            $commentManager->insert($_POST);
-            header('location: /Service/index');
+            $commentManager->insert($_POST, $id, $_SESSION['id']);
+            header("location: /Profil/index/$id");
         }
 
         return $this->twig->render('Comment/comment.html.twig', ['post' => $_POST]);
