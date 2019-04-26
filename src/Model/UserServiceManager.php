@@ -41,5 +41,4 @@ class UserServiceManager extends AbstractManager
 
         return $statement->fetchAll();
     }
-
 }
