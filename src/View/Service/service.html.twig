@@ -10,8 +10,9 @@
                 Choisir un service
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/Service/index/0">Tous les services</a>
                 {% for service in services %}
-                <a class="dropdown-item" href="#">{{ service.label }}</a>
+                <a class="dropdown-item" href="/Service/index/{{ service.id }}">{{ service.label }}</a>
                 {% endfor %}
             </div>
         </div>

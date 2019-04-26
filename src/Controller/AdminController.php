@@ -26,11 +26,37 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/services.html.twig', ['services' => $services]);
     }
 
-    public function delete(int $id)
+    public function deleteService(int $id)
     {
         $serviceManager = new serviceManager();
         $serviceManager->delete($id);
         header('Location:/Admin/services');
+    }
+
+    public function deleteUser(int $id)
+    {
+        $userManager = new UserManager();
+        $userManager->delete($id);
+        header('Location:/Admin/index');
+    }
+
+    public function modifyUser($userId)
+    {
+        $data = [];
+        $userManager = new UserManager();
+        // "Ancien" utilisateur
+        $user = $userManager->selectOneById($userId);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // met à jour avec les données issues du post
+            $user = $userManager->updateFromAdmin($_POST);
+            $valide = 'L\'utilisateur a bien été mis à jour';
+            $data['valide'] = $valide;
+        }
+
+        $data['user'] = $user;
+
+        return $this->twig->render('Admin/modifyUser.html.twig', $data);
     }
 
     public function add()
