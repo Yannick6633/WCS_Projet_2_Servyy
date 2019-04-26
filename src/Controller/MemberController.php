@@ -18,8 +18,7 @@ class MemberController extends AbstractController
     {
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
-        // TODO : remove forced value
-        $_SESSION['id'] = 6;
+
         $userManager = new UserManager();
         $user = $userManager->selectOneById($_SESSION['id']);
         $user['password'] = sha1($user['password']);
@@ -34,10 +33,6 @@ class MemberController extends AbstractController
             }
         }
 
-
-       // var_dump($userServices);
-        //var_dump($servicesByUser);
-var_dump($_SESSION);
 
         return $this->twig->render('Member/member.html.twig', ['services' => $services,
             'user' => $user,
@@ -56,33 +51,27 @@ var_dump($_SESSION);
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
             $_POST['id'] = $_SESSION['id'];
             $userManager = new UserManager();
             $userManager->update($_POST);
-
-            header("Location:/member/profile");
         }
+        header("Location:/member/profile");
     }
 
     public function updateServices(int $id)
     {
-        $_SESSION['id'] = 6;
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $UserServiceManager = new UserServiceManager();
             $UserServiceManager->deleteByUser($_SESSION['id']);
-
-
 
 
             $insertservice = new UserServiceManager();
             foreach ($_POST['service'] as $service => $serviceId) {
                 $insertservice->insert($serviceId, $_SESSION);
             }
-            header("Location:/Member/profile");
         }
-
-        return $this->twig->render('Member/member.html.twig');
+        header("Location:/Member/profile");
     }
 }
 
