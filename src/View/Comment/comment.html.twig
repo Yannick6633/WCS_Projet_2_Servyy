@@ -36,6 +36,13 @@
                         </div>
                     </div>
                     <button class="btn btn-blue" value="submit" type="submit">Postez votre message.</button>
+
+                    {% for error in errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }} <br>
+                                <a href="/Profil/index/{{ id }}">Retour</a></strong>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </form>
