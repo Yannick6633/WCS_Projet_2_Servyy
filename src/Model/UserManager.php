@@ -59,19 +59,20 @@ class UserManager extends AbstractManager
     }
 
 
-    /**
-     * @param array $user
-     * @return bool
-     */
-    public function update(array $user): bool
+    public function updateFromAdmin($user)
     {
-
         // prepared request
-        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
+        $statement = $this->pdo->prepare("UPDATE $this->table 
+        SET firstname = :firstname, lastname = :lastname, email = :email, status = :status 
+        WHERE id=:id");
+        $statement->bindValue('firstname', $user['firstname'], \PDO::PARAM_STR);
+        $statement->bindValue('lastname', $user['lastname'], \PDO::PARAM_STR);
+        $statement->bindValue('email', $user['email'], \PDO::PARAM_STR);
+        $statement->bindValue('status', $user['status'], \PDO::PARAM_INT);
         $statement->bindValue('id', $user['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $user['title'], \PDO::PARAM_STR);
 
-        return $statement->execute();
+        $statement->execute();
+        return $user;
     }
 
     /**
@@ -84,11 +85,6 @@ class UserManager extends AbstractManager
         return $this->pdo->query('SELECT * FROM user 
     INNER JOIN user_service ON user.id = user_service.user_id 
     INNER JOIN service ON service.id = user_service.service_id')->fetchAll();
-    }
-
-    public function selectById(): array
-    {
-        return $this->pdo->query(' SELECT * FROM ' . $this->table . ' WHERE id=5 ')->fetch();
     }
 
     public function verifyEmail($email)
@@ -114,16 +110,24 @@ class UserManager extends AbstractManager
         return $this->pdo->query($q)->fetchAll();
     }
 
-    public function selectUserByRate(): array
+    public function selectUsersOrderedByRate($id): array
     {
-        return $this->pdo->query("SELECT service.label, user.id, user.firstname, user.lastname, 
+        $sql = "SELECT service.label, user.id, user.firstname, user.lastname, 
         user.description ,COUNT(comment.id) AS commentsCount,
         AVG(comment.rate) AS average 
         FROM user 
         LEFT JOIN comment ON user.id = comment.provider_id 
         INNER JOIN user_service ON user_service.user_id = user.id 
         INNER JOIN service ON service.id = user_service.service_id
-        WHERE user.status = '0' GROUP by user.id ORDER BY average DESC")->fetchAll();
+        WHERE user.status = '0' ";
+
+        if ($id > 0) {
+            $sql .= "AND user_service.service_id=$id ";
+        }
+
+        $sql .= "GROUP by user.id ORDER BY average DESC";
+
+        return $this->pdo->query($sql)->fetchAll();
     }
 
 
