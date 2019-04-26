@@ -114,7 +114,7 @@ class UserManager extends AbstractManager
         return $this->pdo->query($q)->fetchAll();
     }
 
-    public function selectUserByRate($id): array
+    public function selectUsersOrderedByRate($id): array
     {
         $sql = "SELECT service.label, user.id, user.firstname, user.lastname, 
         user.description ,COUNT(comment.id) AS commentsCount,
