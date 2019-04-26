@@ -31,9 +31,11 @@ class CommentController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $commentManager = new CommentManager();
-            $commentManager->insert($_POST, $id, $_SESSION['id']);
-            header("location: /Profil/index/$id");
+            if (!empty($_POST['rate'])) {
+                $commentManager = new CommentManager();
+                $commentManager->insert($_POST, $id, $_SESSION['id']);
+                header("location: /Profil/index/$id");
+            }
         }
 
         return $this->twig->render('Comment/comment.html.twig', ['post' => $_POST]);
