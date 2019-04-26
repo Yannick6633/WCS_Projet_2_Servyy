@@ -130,6 +130,17 @@ class UserManager extends AbstractManager
         return $this->pdo->query($q)->fetchAll();
     }
 
+    public function selectRateUserById($id)
+    {
+        $q = "  SELECT COUNT(comment.id) AS commentsCount,
+                AVG(comment.rate) AS average 
+                FROM user 
+                LEFT JOIN comment ON user.id = comment.provider_id 
+                WHERE user.id = $id ";
+
+        return $this->pdo->query($q)->fetchAll();
+    }
+
     public function selectUsersOrderedByRate($id): array
     {
         $sql = "SELECT service.label, user.id, user.firstname, user.lastname, 

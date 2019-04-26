@@ -35,6 +35,9 @@ class ProfilController extends AbstractController
         $services = $userServiceManager->selectAllServicesByUserId($id);
         $userManager = new UserManager();
         $user = $userManager->selectOneById($id);
+        $rate = $userManager->selectRateUserById($id);
+        $user['average'] = (int)$rate[0]['average'];
+        $user['commentsCount'] = (int)$rate[0]['commentsCount'];
 
         $city = null;
         if (!empty($user['city_id'])) {

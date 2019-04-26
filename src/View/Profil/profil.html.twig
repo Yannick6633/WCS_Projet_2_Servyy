@@ -12,7 +12,9 @@
                 <div class="rate">
                     <img src="/assets/images/users/{{ user.id }}.jpg" alt="{{ user.firstname }}">
                     <h2>{{ user.firstname }} {{ user.lastname }}</h2>
-                    <small class="text-muted rate">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    <small class="text-muted rate">
+                        {% include 'Inc/rate.html.twig' %}
+                    </small>
                 </div>
 
                 <h4>Ma ville : {{ city.real_name }}</h4>

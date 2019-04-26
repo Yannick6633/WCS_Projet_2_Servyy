@@ -21,8 +21,10 @@ class MemberController extends AbstractController
 
         $userManager = new UserManager();
         $user = $userManager->selectOneById($_SESSION['id']);
+        $rate = $userManager->selectRateUserById($_SESSION['id']);
+        $user['average'] = (int)$rate[0]['average'];
+        $user['commentsCount'] = (int)$rate[0]['commentsCount'];
         $user['password'] = sha1($user['password']);
-
 
         $userServicesManager = new UserServiceManager();
         $userServices = $userServicesManager->selectById($_SESSION['id']);
