@@ -10,8 +10,9 @@
                 Choisir un service
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/Service/index/0">Tous les services</a>
                 {% for service in services %}
-                <a class="dropdown-item" href="#">{{ service.label }}</a>
+                <a class="dropdown-item" href="/Service/index/{{ service.id }}">{{ service.label }}</a>
                 {% endfor %}
             </div>
         </div>
@@ -24,7 +25,7 @@
                     <a href="#"><img class="card-img-top" src="/assets/images/users/{{ user.id }}.jpg" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="/Profil/index">{{ user.firstname }}</a>
+                            <a href="/Profil/index/{{ user.id }}">{{ user.firstname }}</a>
                         </h4>
                         <h5>{{ user.label }}</h5>
                         <p class="card-text">{{ user.description }}</p>
