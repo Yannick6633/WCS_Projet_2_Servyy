@@ -121,7 +121,7 @@ class UserManager extends AbstractManager
     {
         $q = "  SELECT  user.id, user.firstname, user.lastname, 
                 user.description ,COUNT(comment.id) AS commentsCount,
-                AVG(comment.rate) AS average 
+                CEIL(AVG(comment.rate)) AS average 
                 FROM user 
                 LEFT JOIN comment ON user.id = comment.provider_id 
                 WHERE user.status = '0' 
@@ -133,7 +133,7 @@ class UserManager extends AbstractManager
     public function selectRateUserById($id)
     {
         $q = "  SELECT COUNT(comment.id) AS commentsCount,
-                AVG(comment.rate) AS average 
+                CEIL(AVG(comment.rate)) AS average 
                 FROM user 
                 LEFT JOIN comment ON user.id = comment.provider_id 
                 WHERE user.id = $id ";
@@ -145,7 +145,7 @@ class UserManager extends AbstractManager
     {
         $sql = "SELECT service.label, user.id, user.firstname, user.lastname, 
         user.description ,COUNT(comment.id) AS commentsCount,
-        AVG(comment.rate) AS average 
+        CEIL(AVG(comment.rate)) AS average 
         FROM user 
         LEFT JOIN comment ON user.id = comment.provider_id 
         INNER JOIN user_service ON user_service.user_id = user.id 
