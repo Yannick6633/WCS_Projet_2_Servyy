@@ -66,7 +66,8 @@
                                 <label for="tel" class="mr-sm-2">Telephone:</label>
                                 <input type="text"name="phone"  class="form-control mb-2 mr-sm-2" id="tel" value="{{ user.phone }}">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                    <input type="checkbox" name="visibility" value="1" class="custom-control-input"
+                                           id="customSwitch1" {% if user.visibility == '1' %}checked{% endif %}>
                                     <label class="custom-control-label" for="customSwitch1">Mon numéro de téléphone est
                                         visible par les membres</label>
                                 </div>

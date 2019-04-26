@@ -56,7 +56,9 @@ class MemberController extends AbstractController
             $userManager = new UserManager();
             $cityManager = new CityManager();
             $city = $cityManager->verifyCity($_POST['zipcode']);
-
+            if (!isset($_POST['visibility'])) {
+                $_POST['visibility'] = '0';
+            }
             $_POST['zipcode'] = $city[0]['id'];
             $userManager->update($_POST);
         }
