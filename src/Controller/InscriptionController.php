@@ -69,7 +69,12 @@ class InscriptionController extends AbstractController
             $this->insertServices($_POST['services'], $lastUser);
         }
 
-        return $this->twig->render('Inscription/register.html.twig', ['errors' => $errors,
+        $servicesManager = new ServiceManager();
+        $services = $servicesManager->selectAll();
+
+        return $this->twig->render('Inscription/register.html.twig', [
+            'errors' => $errors,
+            'services' => $services,
             'post' => $_POST, 'valide' => $valide]);
     }
 

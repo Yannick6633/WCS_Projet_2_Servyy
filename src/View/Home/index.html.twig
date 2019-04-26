@@ -4,13 +4,6 @@
 
 {% block content %}
 
-    <!-- Page Content -->
-
-
-
-
-
-
 <div class="main-page container">
     <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -47,18 +40,16 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <a href="/service/index"><img class="card-img-top"
-                                                      src="{{ service.picture }}"
-                                                      alt=""></a>
+                        <a href="/service/index/{{ service.id }}"><img class="card-img-top"
+                                                      src="/{{ service.picture }}"
+                                                      alt="{{ service.label }}"></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">{{ service.label }}</a>
+                                <a href="/service/index/{{ service.id }}">{{ service.label }}</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                                numquam asatur!</p>
                         </div>
                         <div class="card-footer text-center">
-                            <button class="btn btn-blue px-5">{{ service.label }}</button>
+                            <a href="/service/index/{{ service.id }}" class="btn btn-blue px-5">{{ service.label }}</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +69,7 @@
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">{{ user.firstname }}</a>
+                                <a href="/profil/index/{{ user.id }}">{{ user.firstname }}</a>
                             </h4>
                             <h5>{{ user.label }}</h5>
                             <p class="card-text">{{ user.description }}</p>
@@ -103,6 +94,49 @@
                 </div>
             {% endfor %}
 
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h2 class="text-center top-space">A PROPOS</h2>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Pourquoi Servyy ?</h3>
+                <p>
+                    Depuis 2018, de nouvelles alternatives arrivent grâce à l’essor des nouvelles technologies, et au changement des modes de vies et de consommation.
+                    Le service entre particulier est une réponse intelligente à la crise économique : grâce à cette nouvelle pratique, des milliers de particuliers peuvent désormais rendre service dans leur quartier tout en échangeant leurs compétences avec d’autres particuliers.
+                    Le principe est simple: mettre en relation un prestataire (une personne proposant un coup de main pour des petits services en bricolage, déménagement, nettoyage...) et un particuler en toute sécurité et convivialité.
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <h3>La confiance et le partage</h3>
+                <p>
+                    Les Servyers sont évalués après chaque mission effectuée. Ces notes de confiance ont deux objectifs : rassurer les particuliers et permettre aux servyers de montrer aux autres membres qu’ils sont fiables et compétents. On vous souhaite la bienvenue dans une nouvelle ère, celle de la confiance et du partage de compétences entre membres de la communauté !
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Comment çà marche ?</h3>
+                <p>
+                    1. Inscrivez vous et cherchez le servyer qui correspond a votre besoin <br>
+                    2. Les servyers disponibles et compétents vous proposent leurs services <br>
+                    3. Evaluez et laissez un avis à votre servyer une fois le job terminé
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Vous voulez proposez vos services ?</h3>
+                <p>
+                    1. Inscrivez vous et renseignez vos compétences <br>
+                    2. Un administrateur devra confirmer votre compte <br>
+                    3. Attendez le contact d'un autre servyer
+                </p>
+            </div>
+        </div>
+        <div class="jumbotron top-space">
+            <h4>Si vous avez d'autres questions, n'hésitez pas à contacter un administrateur grâce au formulaire de contact !</h4>
+            <p class="text-right"><a class="btn btn-primary btn-large" href="/contact/index">Contact »</a></p>
         </div>
     </div>
 
