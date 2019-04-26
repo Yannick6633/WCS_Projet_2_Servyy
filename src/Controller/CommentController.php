@@ -32,6 +32,8 @@ class CommentController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($_POST['rate'])) {
+
+                $_POST['content'] = htmlspecialchars(trim($_POST['content']));
                 $commentManager = new CommentManager();
                 $commentManager->insert($_POST, $id, $_SESSION['id']);
                 header("location: /Profil/index/$id");
