@@ -14,7 +14,7 @@ use App\Model\UserServiceManager;
 
 class MemberController extends AbstractController
 {
-    public function profile()
+    public function index()
     {
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
@@ -74,4 +74,3 @@ class MemberController extends AbstractController
         header("Location:/Member/profile");
     }
 }
-
