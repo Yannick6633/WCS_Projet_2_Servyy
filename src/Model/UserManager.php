@@ -43,7 +43,8 @@ class UserManager extends AbstractManager
         $statement->bindValue('description', $user['description'], \PDO::PARAM_STR);
         $statement->bindValue('city_id', $city, \PDO::PARAM_INT);
 
-        $statement->execute();
+        $a = $statement->execute();
+        var_dump($a);exit;
     }
 
 
@@ -66,10 +67,18 @@ class UserManager extends AbstractManager
     public function update(array $user): bool
     {
 
-        // prepared request
-        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
-        $statement->bindValue('id', $user['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $user['title'], \PDO::PARAM_STR);
+
+        $statement = $this->pdo->prepare("UPDATE $this->table 
+        SET  firstname = :firstname, lastname = :lastname, email = :email, phone = :phone, distance = :distance, description = :description
+        WHERE id=:id");
+        $statement->bindValue('id',$user['id'], \PDO::PARAM_INT);
+        $statement->bindValue('firstname', $user['firstname'], \PDO::PARAM_STR);
+        $statement->bindValue('lastname', $user['lastname'], \PDO::PARAM_STR);
+        $statement->bindValue('email', $user['email'], \PDO::PARAM_STR);
+        $statement->bindValue('phone', $user['phone'], \PDO::PARAM_STR);
+        $statement->bindValue('distance', $user['distance'], \PDO::PARAM_STR);
+        $statement->bindValue('description', trim($user['description']), \PDO::PARAM_STR);
+
 
         return $statement->execute();
     }
