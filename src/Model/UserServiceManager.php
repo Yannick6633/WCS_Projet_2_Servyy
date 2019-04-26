@@ -33,4 +33,40 @@ class UserServiceManager extends AbstractManager
 
         $statement->execute();
     }
+
+
+
+    public function selectById(int $i)
+    {
+        $statement = $this->pdo->prepare("SELECT service_id FROM $this->table JOIN user ON user_service.user_id=user.id WHERE user_id=:id ");
+        $statement->bindValue('id', $i, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public function update(array $userServices)
+    {
+        $statement = $this->pdo->prepare("UPDATE $this->table 
+        SET  
+        WHERE id=:id");
+        $statement->bindValue('id', $_SESSION['id'], \PDO::PARAM_INT);
+        $statement->bindValue('firstname', $user['firstname'], \PDO::PARAM_STR);
+        $statement->bindValue('lastname', $user['lastname'], \PDO::PARAM_STR);
+        $statement->bindValue('email', $user['email'], \PDO::PARAM_STR);
+        $statement->bindValue('phone', $user['phone'], \PDO::PARAM_STR);
+        $statement->bindValue('distance', $user['distance'], \PDO::PARAM_STR);
+
+        return $statement->execute();
+    }
+
+    public function deleteByUser(int $id): void
+    {
+        // prepared request
+        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE user_service.user_id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+
 }
