@@ -31,7 +31,7 @@ class ServiceController extends AbstractController
     public function index(int $id = 0)
     {
         $userManager = new UserManager();
-        $users = $userManager->selectUserByRate($id);
+        $users = $userManager->selectUsersOrderedByRate($id);
 
         $serviceManager = new ServiceManager();
         $services = $serviceManager->selectAll();
