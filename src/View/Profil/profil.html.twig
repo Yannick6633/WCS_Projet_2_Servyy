@@ -3,29 +3,30 @@
 {% block title %}Profil{% endblock %}
 
 {% block content %}
+
+
     <div class="container main-page">
 
         <div class="row profil-top">
             <div class="profil-item">
                 <div class="rate">
-                <img src="/assets/images/users/1.jpg" alt="Laure">
-                <h2>{{ user.firstname }} {{ user.lastname }}</h2>
-                <small class="text-muted rate">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                <div class="modifier">
-                    <div class="">
-                        Modifier
-                    </div>
-                    <div>Supprimer</div>
+                    <img src="/assets/images/users/1.jpg" alt="Laure">
+                    <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+                    <small class="text-muted rate">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
 
-                </div>
-                </div>
+                <h4>Ma ville : {{ city.real_name }}</h4>
+
+                <button type="button" class="btn btn-info"><a href="/comment/index" target="_blank">Laissez-moi un commentaire.</a></button>
             </div>
+
 
             <div class="profil-item profil-service">
                 <h2>Services proposés</h2>
                 <ul>
-                    <li>Garde d'animaux</li>
-                    <li>Jardinage</li>
+                    {% for service in services %}
+                        <li>{{ service.label }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -34,6 +35,7 @@
             <h2>Description</h2>
             <p>{{ user.description }}</p>
         </div>
+
     </div>
 
 {% endblock %}

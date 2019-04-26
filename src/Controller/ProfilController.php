@@ -8,35 +8,44 @@
 
 namespace App\Controller;
 
-use App\Model\UserManager;
+use App\Model\CityManager;
 
+use App\Model\UserManager;
+use App\Model\UserServiceManager;
+
+/**
+ * Class ProfilController
+ * @package App\Controller
+ */
 class ProfilController extends AbstractController
 {
 
     /**
-     * Display home page
-     *
+     * @param int $id
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function index()
+    public function index(int $id) :string
     {
         $this->authenticator->isAuthorized();
+
+        $userServiceManager = new UserServiceManager();
+        $services = $userServiceManager->selectAllServicesByUserId($id);
         $userManager = new UserManager();
-        $user = $userManager->selectById();
+        $user = $userManager->selectOneById($id);
 
-        return $this->twig->render('Profil/profil.html.twig', ['user' => $user]);
-    }
+        $city = null;
+        if (!empty($user['city_id'])) {
+            $cityManager = new CityManager();
+            $city = $cityManager->selectOneById($user['city_id']);
+        }
 
 
-    public function show()
-    {
-        $userManager = new UserManager();
-        $user = $userManager->selectAll();
-        $errors = [];
-        return $this->twig->render('Profil/profil.html.twig', ['users' => $user,
-            'errors' => $errors]);
+        return $this->twig->render('Profil/profil.html.twig', [
+            'user' => $user,
+            'services' => $services,
+            'city' => $city]);
     }
 }

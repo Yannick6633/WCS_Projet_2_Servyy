@@ -35,6 +35,15 @@ class UserServiceManager extends AbstractManager
     }
 
 
+    public function selectAllServicesByUserId(int $id)
+    {
+        $statement = $this-> pdo->query("SELECT * FROM $this->table 
+            JOIN service ON user_service.service_id = service.id WHERE user_id = $id");
+
+        return $statement->fetchAll();
+    }
+
+
 
     public function selectById(int $i)
     {
@@ -67,6 +76,7 @@ class UserServiceManager extends AbstractManager
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
     }
+
 
 
 }
