@@ -63,7 +63,7 @@ class InscriptionController extends AbstractController
             $this->insertMember($_POST);
         }
 
-        if (empty($errors) && !empty($_POST['services'])) {
+        if (!empty($_POST['services'])) {
             $userManager = new UserManager();
             $lastUser = $userManager->selectLastId();
             $this->insertServices($_POST['services'], $lastUser);
