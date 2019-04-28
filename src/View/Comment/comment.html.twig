@@ -22,15 +22,27 @@
 
 
                     <div class="rating">
-                        {% for i in 1..5 %}
+                        {% for i in 1..4 %}
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="rate"
+                                <input class="form-check-input" type="radio" id="inlineCheckbox{{ i }}" name="rate"
                                        value="{{ i }}">
-                                <label class="form-check-label" for="inlineCheckbox1"><span>&#9734</span></label>
+                                <label class="form-check-label" for="inlineCheckbox{{ i }}"><span>&#9734</span></label>
                             </div>
                         {% endfor %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineCheckbox5" name="rate"
+                                   value="5" checked>
+                            <label class="form-check-label" for="inlineCheckbox5"><span>&#9734</span></label>
+                        </div>
                     </div>
                     <button class="btn btn-blue" value="submit" type="submit">Postez votre message.</button>
+
+                    {% for error in errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }} <br>
+                                <a href="/Profil/index/{{ id }}">Retour</a></strong>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </form>

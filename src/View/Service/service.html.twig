@@ -32,18 +32,7 @@
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">
-                            {% if user.commentsCount > 0 %}
-                                {% for i in 0..user.average - 1 %}
-                                    &#9733
-                                {% endfor %}
-                                {% if user.average != 5 %}
-                                    {% for i in 0..5 - user.average -1 %}
-                                        &#9734
-                                    {% endfor %}
-                                {% endif %}
-                            {% else %}
-                                N/C*
-                            {% endif %}
+                            {% include 'Inc/rate.html.twig' %}
                         </small>
                     </div>
                 </div>
