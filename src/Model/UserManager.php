@@ -62,7 +62,8 @@ class UserManager extends AbstractManager
     {
         $statement = $this->pdo->prepare("UPDATE $this->table
         SET  firstname = :firstname, lastname = :lastname, 
-        email = :email, phone = :phone, distance = :distance, description = :description
+        email = :email, phone = :phone, distance = :distance, 
+        description = :description, city_id = :city_id, visibility = :visibility
         WHERE id=:id");
 
         $statement->bindValue('id', $user['id'], \PDO::PARAM_INT);
@@ -72,6 +73,8 @@ class UserManager extends AbstractManager
         $statement->bindValue('phone', $user['phone'], \PDO::PARAM_STR);
         $statement->bindValue('distance', $user['distance'], \PDO::PARAM_INT);
         $statement->bindValue('description', trim($user['description']), \PDO::PARAM_STR);
+        $statement->bindValue('city_id', $user['zipcode'], \PDO::PARAM_INT);
+        $statement->bindValue('visibility', $user['visibility'], \PDO::PARAM_STR);
 
         $statement->execute();
 

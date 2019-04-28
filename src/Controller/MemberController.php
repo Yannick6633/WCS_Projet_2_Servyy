@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Model\CityManager;
 use App\Model\ServiceManager;
 use App\Model\UserManager;
 use App\Model\UserServiceManager;
@@ -55,9 +56,15 @@ class MemberController extends AbstractController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST['id'] = $_SESSION['id'];
             $userManager = new UserManager();
+            $cityManager = new CityManager();
+            $city = $cityManager->verifyCity($_POST['zipcode']);
+            if (!isset($_POST['visibility'])) {
+                $_POST['visibility'] = '0';
+            }
+            $_POST['zipcode'] = $city[0]['id'];
             $userManager->update($_POST);
         }
-        header("Location:/member/profile");
+        header("Location:/member/index");
     }
 
     public function updateServices(int $id)
@@ -73,6 +80,6 @@ class MemberController extends AbstractController
                 $insertservice->insert($serviceId, $_SESSION);
             }
         }
-        header("Location:/Member/profile");
+        header("Location:/Member/index");
     }
 }
