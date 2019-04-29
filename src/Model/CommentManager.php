@@ -59,4 +59,13 @@ class CommentManager extends AbstractManager
 
         return $statement->execute();
     }
+
+    public function selectAllCommentByIdWithNameAuthor($id): array
+    {
+        $statement = $this->pdo->query("SELECT * FROM comment ​
+        INNER JOIN user ON user.id = author_id WHERE provider_id = $id
+        ORDER BY rate DESC");
+
+        return $statement->fetchAll();
+    }
 }

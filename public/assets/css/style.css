@@ -107,10 +107,19 @@ h2 {
 }
 
 .profil-service {
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 8em;
+     margin-bottom: 8em;
+     border: solid 1px #028090;
+     border-radius: 5px;
+ }
+
+.profil-comment {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8em;
-    margin-bottom: 8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     border: solid 1px #028090;
     border-radius: 5px;
 }
