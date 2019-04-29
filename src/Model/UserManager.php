@@ -122,7 +122,7 @@ class UserManager extends AbstractManager
 
     public function selectBestRate(): array
     {
-        $q = "  SELECT  user.id, user.firstname, user.lastname, 
+        $q = "  SELECT  user.id, user.idPicture, user.firstname, user.lastname, 
                 user.description ,COUNT(comment.id) AS commentsCount,
                 CEIL(AVG(comment.rate)) AS average 
                 FROM user 
@@ -146,7 +146,7 @@ class UserManager extends AbstractManager
 
     public function selectUsersOrderedByRate($id): array
     {
-        $sql = "SELECT service.label, user.id, user.firstname, user.lastname, 
+        $sql = "SELECT service.label, user.id, user.idPicture, user.firstname, user.lastname, 
         user.description ,COUNT(comment.id) AS commentsCount,
         CEIL(AVG(comment.rate)) AS average 
         FROM user 
