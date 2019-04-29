@@ -47,7 +47,7 @@ class MemberController extends AbstractController
     {
         $userManager = new UserManager();
         $userManager->delete($id);
-        header("Location:/");
+        header("Location:/Login/logout");
     }
 
     public function updateUsers(int $id)
