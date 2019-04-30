@@ -1,6 +1,7 @@
 body {
 
     color: #102542;
+    font-family: 'Raleway', sans-serif;
 }
 
 .main-page {
@@ -10,7 +11,13 @@ body {
 h2 {
     color: #101010;
     padding: 0.4em;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-family: 'Crushed', cursive;
+}
+
+h3 {
+    font-family: 'Crushed', cursive;
+    font-size: 2rem;
 }
 
 .bg-blue {
@@ -59,22 +66,91 @@ h2 {
     color: #102542;
 }
 
-.btn-blue {
-    color: #fff;
-    background-color: #102542;
-    border-color: #102542;
-}
-
 .button-select {
 
-    margin-top:0.8em ;
+    margin-top: 0.8em;
 }
 
 .btn-blue {
     margin-top: 0.8em;
     margin-bottom: 0.8em;
+    background-color: #102542;
+    border: solid #102542 2px;
+    padding: 8px 18px 8px 18px;
+    border-radius: 5px;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.btn-blue:hover {
+    color: #102542;
     background-color: #1CAAC3;
-    border: solid #1CAAC3 1px;
+    text-decoration: none;
+}
+
+.btn-dark-blue {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    background-color: #102542;
+    border: solid #FFFFFF 2px;
+    padding: 8px 18px 8px 18px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.btn-dark-blue:hover {
+    color: #102542;
+    background-color: #1CAAC3;
+    text-decoration: none;
+}
+
+
+.btn-light-blue {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    background-color: #1CAAC3;
+    border: solid #1CAAC3 2px;
+    padding: 8px 18px 8px 18px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.btn-light-blue:hover {
+    color: #102542;
+    background-color: #1CAAC3;
+    text-decoration: none;
+}
+
+
+.card-footer-blue {
+    padding: .75rem 1.25rem;
+    background-color: #102542;
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
+
+.jumbotron-blue {
+    text-align: center;
+    padding: 3rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #1CAAC3;
+    border-radius: .3rem;
+    margin-top: 2rem;
+}
+
+.form-insc {
+    margin-top: 8rem;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+}
+
+h4 {
+    font-size: 20px;
 }
 
 .modifier {
@@ -107,13 +183,13 @@ h2 {
 }
 
 .profil-service {
-     margin-left: auto;
-     margin-right: auto;
-     margin-top: 8em;
-     margin-bottom: 8em;
-     border: solid 1px #028090;
-     border-radius: 5px;
- }
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8em;
+    margin-bottom: 8em;
+    border: solid 1px #028090;
+    border-radius: 5px;
+}
 
 .profil-comment {
     margin-left: auto;
@@ -126,7 +202,12 @@ h2 {
 
 .inscription-form {
 
-    margin: 1% 20% 1% 20%;
+    margin: 0 15% 1% 15%;
+}
+
+.validation{
+    padding: 5px;
+    color: #028090;
 }
 
 .service-detail-gn {
@@ -141,11 +222,10 @@ h2 {
 /* PAGE 404 */
 
 
-.cadre{
+.cadre {
     border: solid 10px midnightblue;
     padding: 50px;
 }
-
 
 
 .rating {
@@ -176,18 +256,37 @@ h2 {
 form {
     border: 1px grey solid;
     border-radius: 8px;
-    padding: 60px 15px;
-    margin-top: 150px;
+    padding: 40px 15px;
+    margin-top: 60px;
     margin-bottom: 60px;
     background-color: #102542;
-    color:white;
+    color: white;
 }
 
-h1{
+.error{
+    color:#27a1bf;
+}
+
+.title-login {
+    padding-top: 50px;
+}
+
+.login-field {
+    padding-top: 10px;
+    padding-bottom: 2px;
+    font-weight: bold;
+}
+
+.label-field {
+    font-weight: bold;
+    padding: 2px 0 0 0;
+}
+
+h1 {
     text-align: center;
 }
 
 .notfound .notfound-404 h1 {
-        font-size: 122px;
-    }
+    font-size: 122px;
+}
 
