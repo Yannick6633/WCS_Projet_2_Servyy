@@ -4,9 +4,8 @@
 
 {% block content %}
     <div class="container main-page">
-        <div>
-            <h3 class="text-center">Accéder à votre compte</h3>
-            <hr>
+        <div class="inscription-form">
+            <h3 class="text-center title-login">Accéder à votre compte</h3>
             {% for error in errors %}
                 <div class="alert alert-danger">
                     <strong>{{ error }}</strong>
@@ -14,18 +13,16 @@
             {% endfor %}
             <form method="post" action="">
                 <div class="top-margin">
-                    <label for="email">Email <span class="text-danger">*</span></label>
+                    <label for="email" class="login-field">Email <span class="text-danger">*</span></label>
                     <input id="email" name="email" type="text" class="form-control" value="{{ post.email }}">
                 </div>
                 <div class="top-margin">
-                    <label for="password">Mot de passe <span class="text-danger">*</span></label>
+                    <label for="password" class="login-field">Mot de passe <span class="text-danger">*</span></label>
                     <input id="password" name="password" type="password" class="form-control">
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-lg-4 text-right">
-                        <button class="btn btn-primary" name="submit" type="submit">Connexion</button>
-                    </div>
+                <div class="row btn-center">
+                        <button class="btn btn-light-blue" name="submit" type="submit">Connexion</button>
                 </div>
             </form>
         </div>

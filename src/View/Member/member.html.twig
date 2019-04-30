@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/stylemember.css">
 {% endblock %}
 
@@ -10,127 +11,140 @@
 
         <div class="container main-page" id="body">
         <div class="row">
-        <div class="col">
+            <div class="col">
+                <h2 class="title-member"> Mon compte </h2>
 
-        <h2> Mon compte </h2>
-
-        <div class="header">
-            <div class="row">
-                <div class="col">
-
-                    <img src="/assets/images/users/{{ user.idPicture }}.jpg" class="rounded-circle" alt="User pic">
-
-                    <div class="rate">
-                        <p>Note des utilisateurs</p>
-                        <small class="text-muted rate">
-                            {% include 'Inc/rate.html.twig' %}
-                        </small>
+                <div class="header">
+                    <div class="row">
+                        <div class="col">
+                            <div class="profile-pic">
+                                <img src="/assets/images/users/{{ user.idPicture }}.jpg" class="rounded-circle"
+                                     alt="User pic">
+                            </div>
+                            <div class="rate-member">
+                                <p>Note des utilisateurs</p>
+                                <small class="text-muted rate">
+                                    {% include 'Inc/rate.html.twig' %}
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="infos">
-            <div class="row">
-                <div class="col">
+                <div class="infos">
+                    <div class="row">
+                        <h2> Modifier mes informations personnelles</h2>
+                        <div class="form-row">
+                            <form method="post" action="/member/updateUsers/{{ user.id }}">
+                                <div class="col">
+                                    <div class="form-group col-12">
+                                        <label for="exampleFormControlTextarea1">Qui suis-je ? </label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                  name="description" rows="3">{{ user.description }}</textarea>
+                                    </div>
 
-                    <h2> Mes informations personnelles</h2>
-                    <form class="form-row" method="post" action="/member/updateUsers/{{ user.id }}">
+                                    <div class="col">
+                                        <label for="email" class="mr-sm-2">Identifiant (mail):</label>
+                                        <input type="email" name="email" class="form-control mb-2 mr-sm-2" id="email"
+                                               value="{{ user.email }}">
+                                    </div>
 
-                        <div class="form-group col-12">
-                            <label for="exampleFormControlTextarea1">Qui suis-je ? </label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">{{ user.description }}</textarea>
-                        </div>
-
-                        <div class="col">
-                            <label for="email" class="mr-sm-2">Identifiant (mail):</label>
-                            <input type="email" name="email" class="form-control mb-2 mr-sm-2" id="email"
-                                   value="{{ user.email }}">
-                        </div>
-
-                        <div class="col">
-                            <label for="pwd" class="mr-sm-2">Mot de passe:</label>
-                            <input type="password" name="" class="form-control mb-2 mr-sm-2" id="pwd">
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="lastname" class="mr-sm-2">NOM:</label>
-                                <input type="text" name="lastname" class="form-control mb-2 mr-sm-2" id="lastname" value="{{ user.lastname }}">
-                            </div>
-                            <div class="col">
-                                <label for="firstname" class="mr-sm-2">Prénom:</label>
-                                <input type="text" name="firstname"  class="form-control mb-2 mr-sm-2" id="firstname" value="{{ user.firstname }}">
-                            </div>
-                            <div class="col">
-                                <label for="city" class="mr-sm-2">Code Postal:</label>
-                                <input type="text" name="zipcode"  class="form-control mb-2 mr-sm-2" id="city" >
-                            </div>
-                            <div class="col">
-                                <label for="tel" class="mr-sm-2">Telephone:</label>
-                                <input type="text"name="phone"  class="form-control mb-2 mr-sm-2" id="tel" value="{{ user.phone }}">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" name="visibility" value="1" class="custom-control-input"
-                                           id="customSwitch1" {% if user.visibility == '1' %}checked{% endif %}>
-                                    <label class="custom-control-label" for="customSwitch1">Mon numéro de téléphone est
-                                        visible par les membres</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="distance" id="distance" class="mr-sm-2">Rayon de déplacement:</label>
-                                <input type="text" name="distance"  class="form-control mb-2 mr-sm-2" id="distance" value="{{ user.distance }}" >
-                            </div>
-
-                        </div>
-
-                        <div class="boutons row col-5">
-
-                            <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <h2> Je propose:</h2>
-        <form method="post" action="/member/updateServices/{{ user.id }}">
-
-            <div class="services">
-                <div class="row">
-                    {% for service in services %}
-                        <div class="col-4">
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input name="service[{{ service.label }}]" value="{{ service.id }}" type="checkbox"
-                                               {%  for userService in userServices %}
-                                               {% if service.id == userService.id %}checked="checked" {% endif %}
-                                        {% endfor %}/>
+                                    <div class="col">
+                                        <label for="pwd" class="mr-sm-2">Mot de passe:</label>
+                                        <input type="password" name="" class="form-control mb-2 mr-sm-2" id="pwd">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="lastname" class="mr-sm-2">Nom:</label>
+                                            <input type="text" name="lastname" class="form-control mb-2 mr-sm-2"
+                                                   id="lastname" value="{{ user.lastname }}">
+                                        </div>
+                                        <div class="col">
+                                            <label for="firstname" class="mr-sm-2">Prénom:</label>
+                                            <input type="text" name="firstname" class="form-control mb-2 mr-sm-2"
+                                                   id="firstname" value="{{ user.firstname }}">
+                                        </div>
+                                        <div class="col">
+                                            <label for="city" class="mr-sm-2">Code Postal:</label>
+                                            <input type="text" name="zipcode" class="form-control mb-2 mr-sm-2"
+                                                   id="city">
+                                        </div>
+                                        <div class="col">
+                                            <label for="tel" class="mr-sm-2">Téléphone:</label>
+                                            <input type="text" name="phone" class="form-control mb-2 mr-sm-2" id="tel"
+                                                   value="{{ user.phone }}">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" name="visibility" value="1"
+                                                       class="custom-control-input"
+                                                       id="customSwitch1"
+                                                       {% if user.visibility == '1' %}checked{% endif %}>
+                                                <label class="custom-control-label" for="customSwitch1">Mon
+                                                    téléphone est
+                                                    visible par les membres</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label for="distance" id="distance" class="mr-sm-2">Rayon de
+                                                déplacement:</label>
+                                            <input type="text" name="distance" class="form-control mb-2 mr-sm-2"
+                                                   id="distance" value="{{ user.distance }}">
+                                        </div>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{ service.label }}">
-                            </div>
+                                <div class="btn-center col">
+                                    <button type="submit" class="btn btn-light-blue btn-block">Enregistrer</button>
+                                </div>
+                            </form>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
-            </div>
+
+                    <h2> Modifier les services que je propose:</h2>
+                    <div class="services-form">
+                        <form method="post" action="/member/updateServices/{{ user.id }}">
+
+                            <div class="services">
+                                <div class="row">
+                                    {% for service in services %}
+                                        <div class="col-4">
+
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <input name="service[{{ service.label }}]"
+                                                               value="{{ service.id }}"
+                                                               type="checkbox"
+                                                                {% for userService in userServices %}
+                                                            {% if service.id == userService.id %}checked="checked" {% endif %}
+                                                                {% endfor %}/>
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                       placeholder="{{ service.label }}">
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
 
 
-            <div class=boutons">
-                <div class="row">
-                    <div class="col-5">
+                            <div class=boutons">
+                                <div class="row btn-center">
+                                    <div class="col">
 
-                        <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-                        <a href="/member/delete/{{ user.id }}">
-                            <button type="button" class="btn btn-primary btn-block">Supprimer mon compte</button>
-                        </a>
+                                        <button type="submit" class="btn btn-light-blue btn-block">Enregistrer</button>
+                                        <a href="/member/delete/{{ user.id }}">
+                                            <button type="button" class="btn btn-light-blue btn-block">Supprimer mon
+                                                compte
+                                            </button>
+                                        </a>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
-        </div>
-        </div>
         </div>
 
 

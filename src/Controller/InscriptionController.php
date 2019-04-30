@@ -55,7 +55,7 @@ class InscriptionController extends AbstractController
                 $_POST['password'] = sha1($_POST['password']);
             }
             if (empty($errors)) {
-                $valide = 'Votre inscription a été validé';
+                $valide = 'Votre inscription a été validée';
             }
         }
 
