@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Model\CityManager;
 
+use App\Model\CommentManager;
 use App\Model\UserManager;
 use App\Model\UserServiceManager;
 
@@ -45,10 +46,14 @@ class ProfilController extends AbstractController
             $city = $cityManager->selectOneById($user['city_id']);
         }
 
+        $commentManager = new CommentManager();
+        $comments = $commentManager->selectAllCommentByIdWithNameAuthor($id);
 
         return $this->twig->render('Profil/profil.html.twig', [
             'user' => $user,
             'services' => $services,
-            'city' => $city]);
+            'city' => $city,
+            'comments' => $comments,
+        ]);
     }
 }

@@ -1,7 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}Profil{% endblock %}
-
 {% block content %}
 
 
@@ -16,10 +15,16 @@
                         {% include 'Inc/rate.html.twig' %}
                     </small>
                 </div>
-
                 <h4>Ma ville : {{ city.real_name }}</h4>
+                {% if user.visibility == 1 %}
+                    <h4>Mon téléphone : {{ user.phone }}</h4>
+                {% endif %}
 
-                <button type="button" class="btn btn-info"><a href="/comment/index/{{ user.id }}" >Laissez-moi un commentaire.</a></button>
+
+                <button type="button" class="btn btn-light"><a href="/comment/index/{{ user.id }}" >Laissez-moi un commentaire.</a></button>
+                <button type="button" class="btn btn-light"><a href="mailto:{{ user.email }}" >Me contacter.</a></button>
+
+
             </div>
 
 
@@ -38,6 +43,22 @@
             <p>{{ user.description }}</p>
         </div>
 
+        <h3>Avis : </h3>
+        <div class="row">
+            {% for comment in comments %}
+            <div class="col-md-8 mr-auto profil-item profil-comment ">
+                <div class="media-body">
+                    <h5 class="media-heading">{{ comment.firstname ~ ' ' ~ comment.lastname }}</h5>
+                    <div class="pull-right">
+                        <h6 class="text-muted">Note : {{ comment.rate }} étoiles</h6>
+                    </div>
+                    <p>{{ comment.content }}</p>
+                    <div class="media-footer">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
