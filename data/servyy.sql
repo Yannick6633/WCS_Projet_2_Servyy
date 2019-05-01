@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  mar. 16 avr. 2019 à 15:41
+-- Généré le :  lun. 29 avr. 2019 à 10:15
 -- Version du serveur :  8.0.15
 -- Version de PHP :  7.3.3
 
@@ -41,6 +41,10 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`id`, `name`, `slug`, `real_name`, `zip_name`) VALUES
+(1, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33100'),
+(2, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33800'),
+(3, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33200'),
+(4, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33300'),
 (12567, 'SAINT-JEAN-D\'ILLAC', 'saint-jean-d-illac', 'Saint-Jean-d\'Illac', '33127'),
 (12568, 'GUITRES', 'guîtres', 'Guîtres', '33230'),
 (12569, 'CANEJAN', 'canejan', 'Canéjan', '33610'),
@@ -153,7 +157,7 @@ INSERT INTO `city` (`id`, `name`, `slug`, `real_name`, `zip_name`) VALUES
 (12676, 'BOULIAC', 'bouliac', 'Bouliac', '33270'),
 (12677, 'VIGNONET', 'vignonet', 'Vignonet', '33330'),
 (12678, 'VALEYRAC', 'valeyrac', 'Valeyrac', '33340'),
-(12679, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33000-33100-33200-33300-33800'),
+(12679, 'BORDEAUX', 'bordeaux', 'Bordeaux', '33000'),
 (12680, 'BERTHEZ', 'berthez', 'Berthez', '33124'),
 (12681, 'CUBZAC-LES-PONTS', 'cubzac-les-ponts', 'Cubzac-les-Ponts', '33240'),
 (12682, 'SAINT-COME', 'saint-come', 'Saint-Côme', '33430'),
@@ -592,7 +596,7 @@ INSERT INTO `city` (`id`, `name`, `slug`, `real_name`, `zip_name`) VALUES
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
-  `content` text COLLATE utf8_unicode_ci,
+  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `rate` int(11) NOT NULL,
   `author_id` int(11) NOT NULL,
   `provider_id` int(11) NOT NULL
@@ -604,11 +608,18 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `content`, `rate`, `author_id`, `provider_id`) VALUES
 (1, 'Super service merci !', 4, 3, 4),
-(2, NULL, 5, 4, 6),
-(3, NULL, 1, 3, 6),
-(4, NULL, 3, 2, 6),
-(5, NULL, 5, 2, 5),
-(6, 'super', 5, 6, 2);
+(2, 'test', 5, 4, 6),
+(3, 'test', 1, 3, 6),
+(4, 'test', 3, 2, 6),
+(5, 'zerzer', 5, 2, 5),
+(6, 'super', 5, 6, 2),
+(7, 'test', 5, 2, 5),
+(8, 'test', 5, 2, 2),
+(9, 'test12', 5, 2, 2),
+(10, 'tzetz', 4, 2, 2),
+(11, 'zetzet', 1, 2, 2),
+(12, 'zerezrzer', 5, 2, 2),
+(13, 'Super !!!', 5, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -642,24 +653,25 @@ INSERT INTO `item` (`id`, `title`) VALUES
 
 CREATE TABLE `service` (
   `id` int(11) NOT NULL,
-  `label` varchar(55) COLLATE utf8_unicode_ci NOT NULL
+  `label` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `service`
 --
 
-INSERT INTO `service` (`id`, `label`) VALUES
-(1, 'Bricolage'),
-(2, 'Jardinage'),
-(3, 'Déménagement'),
-(4, 'Entretient - Réparation'),
-(5, 'Cours'),
-(6, 'Garde d\'animaux'),
-(7, 'Garde d\'enfants'),
-(8, 'Services à la personne'),
-(9, 'Livreur - Chauffeur'),
-(10, 'Informatique');
+INSERT INTO `service` (`id`, `label`, `picture`) VALUES
+(1, 'Bricolage', 'assets/images/skill/picture5cc2b16e918a6.jpg'),
+(2, 'Jardinage', 'assets/images/skill/picture5cc2b1797487c.jpg'),
+(3, 'Déménagement', 'assets/images/skill/picture5cc2b1812448e.jpg'),
+(4, 'Entretien - Réparation', 'assets/images/skill/picture5cc2c9af80683.jpg'),
+(5, 'Cours', 'assets/images/skill/picture5cc2b196c2564.jpg'),
+(6, 'Garde d\'animaux', 'assets/images/skill/picture5cc2b19f52370.jpeg'),
+(7, 'Garde d\'enfants', 'assets/images/skill/picture5cc2b1a848a8e.jpg'),
+(8, 'Services à la personne', 'assets/images/skill/picture5cc2b1fe6f59c.jpg'),
+(9, 'Livreur - Chauffeur', 'assets/images/skill/picture5cc2b1e31099c.jpg'),
+(10, 'Informatique', 'assets/images/skill/picture5cc2b1ec54c69.jpg');
 
 -- --------------------------------------------------------
 
@@ -669,32 +681,34 @@ INSERT INTO `service` (`id`, `label`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `lastname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `firstname` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `phone` varchar(55) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `visibility` enum('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `visibility` varchar(11) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `city_id` int(11) DEFAULT NULL,
-  `distance` int(11) DEFAULT NULL
+  `distance` int(11) DEFAULT NULL,
+  `idPicture` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `description`, `phone`, `visibility`, `city_id`, `distance`) VALUES
-(1, 'Admin', 'Servyy', 'deadly.group.33@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '1', 'Admin', NULL, '0', NULL, NULL),
-(2, 'Elneris', 'Dang', 'elneris.dang@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', 'Je recherche des services merci à vous Elnéris', NULL, '0', 13058, 5),
-(3, 'Adeline', 'Dubosc', 'adeline.dubosc@hotmail.fr', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', 'Coucou, je cherche un petit bricoleur :)', NULL, '0', NULL, 20),
-(4, 'Geoffrey', 'Bedle', 'geoffrey.bedle@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', 'Je suis bricoleur si vous voulez', NULL, '0', NULL, NULL),
-(5, 'Laure', 'Fraysse', 'laure.fraysse@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', 'J\'adore le jardinage', NULL, '0', NULL, NULL),
-(6, 'Yannick', 'Descombe', 'yanlechaka@sfr.fr', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', 'Je suis un bon bricoleur', NULL, '0', NULL, NULL),
-(7, 'Bertrand', 'Seguinotte', 'b.seguinotte@hotmail.fr', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', NULL, NULL, '0', NULL, NULL),
-(8, 'Florent', 'Duval', 'florent3300047@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', NULL, NULL, '0', NULL, NULL),
-(9, 'Juliette', 'Bousseau', 'jul.bousseau@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', '0', NULL, NULL, '0', NULL, NULL);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `status`, `description`, `phone`, `visibility`, `city_id`, `distance`, `idPicture`) VALUES
+(1, 'Admin', 'Servyy', 'deadly.group.33@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'Admin', NULL, '1', 2, NULL, 1),
+(2, 'Elneris', 'Dang', 'elneris.dang@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, 'Hell0', '0634240117', '1', 13058, 10, 2),
+(3, 'Adeline', 'Dubosc', 'adeline.dubosc@hotmail.it', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, 'Coucou, je cherche un petit bricoleur :)', '0606060606', '1', 1, 20, 3),
+(4, 'Geoffrey', 'Bedle', 'geoffrey.bedle@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, 'Je suis bricoleur si vous voulez', '0556789885', '1', 1, 5, 4),
+(5, 'Laure', 'Fraysse', 'laure.fraysse@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, 'J\'adore le jardinage', '0668877445', '1', 1, 14, 5),
+(6, 'Yannick', 'Decombes', 'yanlechaka@sfr.fr', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, 'Je suis un bon bricoleur', '0669966332', '1', 1, 10, 6),
+(7, 'Bertrand', 'Seguinotte', 'b.seguinotte@hotmail.fr', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, NULL, '0678747541', '1', 1, 10, 7),
+(8, 'Florent', 'Duval', 'florent3300047@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, NULL, '0778521002', '1', 1, 24, 8),
+(9, 'Juliette', 'Bousseau', 'jul.bousseau@gmail.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, '', '0998858585', '1', 1, 30, 9),
+(54, 'test', 'Dang', 'test@test.com', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0, '', '0634240117', '0', 13058, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -716,14 +730,24 @@ INSERT INTO `user_service` (`user_id`, `service_id`) VALUES
 (5, 2),
 (6, 4),
 (6, 1),
-(2, 10),
 (3, 10),
-(2, 5),
 (7, 3),
 (8, 6),
 (9, 8),
 (6, 9),
-(8, 7);
+(8, 7),
+(2, 1),
+(2, 4),
+(54, 1),
+(54, 2),
+(54, 3),
+(54, 4),
+(54, 5),
+(54, 6),
+(54, 7),
+(54, 8),
+(54, 9),
+(54, 10);
 
 --
 -- Index pour les tables déchargées
@@ -734,7 +758,6 @@ INSERT INTO `user_service` (`user_id`, `service_id`) VALUES
 --
 ALTER TABLE `city`
   ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `ville_slug` (`slug`),
   ADD KEY `ville_nom` (`name`),
   ADD KEY `ville_nom_reel` (`real_name`),
   ADD KEY `ville_code_postal` (`zip_name`);
@@ -787,7 +810,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `item`
@@ -805,7 +828,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Contraintes pour les tables déchargées
@@ -815,21 +838,21 @@ ALTER TABLE `user`
 -- Contraintes pour la table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`provider_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`provider_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `user_service`
 --
 ALTER TABLE `user_service`
-  ADD CONSTRAINT `user_service_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `user_service_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
+  ADD CONSTRAINT `user_service_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_service_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
