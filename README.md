@@ -10,6 +10,7 @@
   - Laure Fraysse
   - Yannick Decombes
   
-### Prséentation du projet :
+### Présentation :
 
-http://demo-projet2.elneris.zd.fr/
+  - Démo Day : http://demo-projet2.elneris.zd.fr/
+  - Le site : http://servyy.campus-bordeaux.ovh/
